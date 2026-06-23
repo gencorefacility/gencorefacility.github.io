@@ -1,0 +1,43 @@
+- title: Home
+  url: /
+  children:
+    - title: News & Updates
+      url: /gencore-updates/
+    - title: Invoicing & Pricing
+      url: /invoicing-pricing/
+    - title: Our Team
+      url: /personnel/
+
+- title: Sequencing
+  url: /sequencing/
+  children:
+    - title: Platforms & Specifications
+      url: /platforms-specifications/
+    - title: TuboWeb Tips & Guide
+      url: /sequencing/library-documentation/
+    - title: Library Submission Guidelines
+      url: /sequencing/library-submission-guidelines/
+    - title: Plasmidsaurus Sequencing
+      url: /sequencing/plasmidsaurus-full-length-plasmid-sequencing/
+    - title: Sanger Sequencing
+      url: /sequencing/sanger/
+
+- title: Shared Equipment
+  url: /shared-equipment/
+  children:
+    - title: New York
+      url: /shared-equipment/new-york/
+    - title: Abu Dhabi
+      url: /shared-equipment/abu-dhabi/
+
+- title: Bioinformatics
+  url: /bioinformatics/
+  children:
+    - title: Getting Started
+      url: /bioinformatics/getting-started/
+
+- title: Ordering
+  url: /ordering/
+
+- title: Blog
+  url: /blog/

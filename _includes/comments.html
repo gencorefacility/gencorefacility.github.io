@@ -1,0 +1,31 @@
+{% assign slug = page.comment_slug | default: page.slug %}
+{% assign comments = site.data.comments[slug] %}
+{% if comments and comments.size > 0 %}
+<div class="comments-section">
+  <h3>{{ comments.size }} Comment{% if comments.size != 1 %}s{% endif %}</h3>
+  {% for comment in comments %}
+  <div class="comment">
+    <div class="comment-meta">
+      <span class="comment-author">{{ comment.author }}</span>
+      &middot; {{ comment.date | date: "%B %-d, %Y" }}
+    </div>
+    <div class="comment-body">
+      {{ comment.content }}
+    </div>
+    {% if comment.replies %}
+    {% for reply in comment.replies %}
+    <div class="comment-reply">
+      <div class="comment-meta">
+        <span class="comment-author">{{ reply.author }}</span>
+        &middot; {{ reply.date | date: "%B %-d, %Y" }}
+      </div>
+      <div class="comment-body">
+        {{ reply.content }}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

@@ -1,0 +1,39 @@
+title: "Genomics Core at NYU CGSB"
+description: "Providing next-generation sequencing and scientific support to the NYU community"
+url: "https://gencorefacility.github.io"
+baseurl: ""
+
+permalink: /:categories/:title/
+
+collections_dir: .
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - audit-screenshots
+  - .claude
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+  - scope:
+      path: "pages"
+      type: "pages"
+    values:
+      layout: "page"

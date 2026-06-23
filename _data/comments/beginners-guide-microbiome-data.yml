@@ -1,0 +1,9 @@
+- author: "Mohammed Khalfan"
+  date: "2019-12-11"
+  content: |
+    <p>Metagenomics research is changing the way we think and live. The tools described here (Kraken,  MetaPhlan, HUMAnN2, metaSPAdes, MEGAHIT) are some of the tools driving these changes. For a user-friendly web app which uses another popular software tool called QIIME, check out <a href="http://dnasubway.org" rel="nofollow ugc">http://dnasubway.org</a> (the purple line).</p>
+
+- author: "Laura Korobkova"
+  date: "2022-01-20"
+  content: |
+    <p>Hi! Thanks for the guide! Can you please clarify if Kraken can be used as metatranscriptome tool or only metagenome tool? Thank you!</p>

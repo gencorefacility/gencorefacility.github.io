@@ -1,0 +1,31 @@
+- author: "Sally"
+  date: "2018-10-16"
+  content: |
+    <p>Works like a charm, thanks!</p>
+
+- author: "Anthony"
+  date: "2023-02-15"
+  content: |
+    <p>Is it possible to modify multiple sequences with reform?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2023-02-15"
+      content: |
+        <p>At the moment <em>ref</em>orm only supports one modification at a time.</p>
+
+- author: "Nestor Saiz"
+  date: "2023-05-09"
+  content: |
+    <p>I keep getting the following error when running from shell:<br />
+         reform.py: error: the following arguments are required: &#8211;in_fasta, &#8211;in_gff, &#8211;ref_fasta, &#8211;ref_gff<br />
+    even though I provide all arguments as described here. When I try to submit via the web app, I am told both upstream and downstream FASTA files are required, even though I&#8217;m providing both. Please assist!</p>
+
+- author: "Elisabet"
+  date: "2023-07-05"
+  content: |
+    <p>Great tool! Is it possible to substitute rows for new ones in the GFF? When adding a new sequence, the annotations of all downstream genes should be changed, could I use reform for this purpose?</p>
+
+- author: "Priscila"
+  date: "2023-12-06"
+  content: |
+    <p>Is it possible to add the new sequence to the reference and it&#8217;s respective gtf, but to an &#8220;artificial&#8221; chromosome (chromosome not present in the reference)?</p>

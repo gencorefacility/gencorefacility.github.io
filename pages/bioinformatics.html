@@ -1,0 +1,134 @@
+---
+layout: page
+title: Bioinformatics
+permalink: /bioinformatics/
+header_image: /assets/images/header-bioinformatics.jpg
+---
+
+<!-- Top Cards Section -->
+<div class="top-cards-dark">
+  <div class="top-cards">
+    <a href="#what-we-do" class="top-card">
+      <h3>What We Do</h3>
+      <p>End-to-end bioinformatics delivering fast, reproducible results.</p>
+    </a>
+    <a href="/bioinformatics/getting-started/" class="top-card">
+      <h3>Getting Started</h3>
+      <p>How to get access to the HPC, data policies, and best practices for analyzing your data.</p>
+    </a>
+    <a href="https://forms.bio.nyu.edu/2-2/computational_needs/" class="top-card" target="_blank">
+      <h3>Support</h3>
+      <p>Submit a ticket for permission requests and other computational support.</p>
+    </a>
+  </div>
+</div>
+
+<!-- What We Do Section (merged from WP page 4206) -->
+<h2 class="section-heading" id="what-we-do">What We Do</h2>
+
+<p>The Gencore bioinformatics team provides high-throughput sequencing data analysis with speed, automation, and reliability across multiple platforms. We offer comprehensive support spanning data processing through archival.</p>
+
+<h3 class="text-purple">Team</h3>
+<ul>
+  <li><strong>David Gresham</strong> &mdash; Faculty Director of Bioinformatics</li>
+  <li><strong>Mohammed Khalfan</strong> &mdash; Senior Bioinformatics Specialist</li>
+  <li><strong>Eric Borenstein</strong> &mdash; Biology Department HPC Specialist</li>
+</ul>
+
+<h3 class="text-purple">Supported Platforms</h3>
+<p>Illumina (MiSeq, NextSeq, NovaSeq), Oxford Nanopore (MinION, GridION), and Element Biosciences (AVITI).</p>
+
+<h3 class="text-purple">Core Services</h3>
+<ul>
+  <li>Automated analysis pipelines and quality control reporting</li>
+  <li>Data delivery via HPC cluster and permanent archival</li>
+  <li>Support for advanced and custom sequencing library designs</li>
+  <li>Metadata traceability through our LIMS system</li>
+  <li>Full integration with NYU HPC cluster through Open OnDemand web interface</li>
+  <li>Nextflow/nf-core pipeline support</li>
+</ul>
+
+<hr>
+
+<!-- Resources Section -->
+<h2 class="section-heading">Resources</h2>
+
+<div class="resource-grid">
+
+  <a href="http://nasqar.abudhabi.nyu.edu/" class="resource-card" target="_blank">
+    <h4>NASQAR</h4>
+    <p>Web-based platform for NGS data analysis and visualization</p>
+  </a>
+
+  <a href="http://learn.gencore.bio.nyu.edu/" class="resource-card" target="_blank">
+    <h4>Learn</h4>
+    <p>Comprehensive resource for mastering NGS analysis</p>
+  </a>
+
+  <a href="https://tuboweb.bio.nyu.edu" class="resource-card" target="_blank">
+    <h4>TuboWeb</h4>
+    <p>Web-based platform for NGS data analysis and visualization</p>
+  </a>
+
+  <a href="http://shiny.bio.nyu.edu/" class="resource-card" target="_blank">
+    <h4>Shiny</h4>
+    <p>Collection of Shiny apps developed by the NYU Biology community</p>
+  </a>
+
+  <a href="/reform/" class="resource-card">
+    <h4>reform</h4>
+    <p>Modify reference sequence and annotation files quickly and easily</p>
+  </a>
+
+  <a href="https://docs.google.com/document/d/1ZlpEEAvyBAsOIm1ECydLuPgq_sHlxLmS1IqReUVKrdU/edit?usp=sharing" class="resource-card" target="_blank">
+    <h4>BADAS</h4>
+    <p>Bioinformatics and Data Analysis Series</p>
+  </a>
+
+  <a href="https://github.com/gencorefacility" class="resource-card" target="_blank">
+    <h4>GitHub</h4>
+    <p>Open source and reproducible code repositories</p>
+  </a>
+
+  <a href="https://jbrowse.bio.nyu.edu/" class="resource-card" target="_blank">
+    <h4>JBrowse</h4>
+    <p>Interactive genomic data visualization for in-depth analysis</p>
+  </a>
+
+</div>
+
+<!-- Recent Articles Section -->
+<h2 class="section-heading">Recent Articles</h2>
+
+{% for post in site.posts limit:5 %}
+<div class="post-preview">
+  {% if post.featured_image %}
+  <div class="post-thumb" style="background-image: url('{{ post.featured_image }}')"></div>
+  {% endif %}
+  <div class="post-preview-body">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+    {% if post.excerpt %}
+    <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+<!-- Contact Section -->
+<h2 class="section-heading">Contact Us</h2>
+
+<p class="text-center">For pipeline consultation and downstream analysis questions, please contact:</p>
+
+<div class="top-cards">
+  <div class="top-card">
+    <h4>New York</h4>
+    <p>Mohammed Khalfan<br>
+    <a href="mailto:mkhalfan@nyu.edu">mkhalfan@nyu.edu</a></p>
+  </div>
+  <div class="top-card">
+    <h4>Abu Dhabi</h4>
+    <p>Nizar Drou<br>
+    <a href="mailto:nd48@nyu.edu">nd48@nyu.edu</a></p>
+  </div>
+</div>

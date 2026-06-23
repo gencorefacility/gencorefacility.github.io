@@ -1,0 +1,150 @@
+.blog-list {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2em 20px;
+}
+
+.post-preview {
+  display: flex;
+  gap: 1.5em;
+  background: $card-bg;
+  box-shadow: $card-shadow;
+  border-radius: $border-radius;
+  margin-bottom: 1.5em;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: $card-shadow-hover;
+  }
+
+  .post-thumb {
+    width: 280px;
+    min-height: 180px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .post-preview-body {
+    padding: 1.25em 1.5em;
+    flex: 1;
+
+    h3 {
+      margin: 0 0 0.3em;
+      font-size: 1.2rem;
+
+      a {
+        color: $accent;
+      }
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      color: $text-muted;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    .post-thumb {
+      width: 100%;
+      min-height: 160px;
+    }
+  }
+}
+
+// Single post
+.post-article {
+  .post-header {
+    margin-bottom: 1.5em;
+    text-align: center;
+
+    h1 {
+      color: $accent;
+      margin-bottom: 0.2em;
+    }
+
+    .post-meta {
+      color: $text-muted;
+      font-size: 0.9rem;
+    }
+  }
+
+  .post-body {
+    line-height: 1.8;
+    font-size: 1.02rem;
+
+    img {
+      display: block;
+      margin: 1.5em auto;
+      border-radius: $border-radius;
+    }
+
+    h2, h3 {
+      color: $text-color;
+    }
+  }
+}
+
+// Homepage blog preview cards
+.home-blog-section {
+  padding: 2em 0;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1em;
+  }
+}
+
+.home-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5em;
+  margin: 1em 0 1.5em;
+}
+
+.home-blog-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: $card-shadow-hover;
+  }
+
+  .card-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-body {
+    padding: 1em;
+
+    h4 {
+      margin: 0 0 0.3em;
+      font-size: 0.95rem;
+
+      a {
+        color: $accent;
+      }
+    }
+
+    .post-meta {
+      font-size: 0.75rem;
+      color: $text-muted;
+    }
+  }
+}

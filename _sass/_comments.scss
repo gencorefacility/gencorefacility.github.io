@@ -1,0 +1,45 @@
+.comments-section {
+  margin-top: 3em;
+  border-top: 2px solid $border-color;
+  padding-top: 2em;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
+.comment {
+  border-bottom: 1px solid lighten($border-color, 5%);
+  padding: 1em 0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .comment-meta {
+    font-size: 0.85rem;
+    color: $text-muted;
+    margin-bottom: 0.4em;
+
+    .comment-author {
+      font-weight: 500;
+      color: $text-color;
+    }
+  }
+
+  .comment-body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+
+    p {
+      margin: 0.3em 0;
+    }
+  }
+
+  .comment-reply {
+    margin-left: 2em;
+    border-left: 3px solid $border-color;
+    padding-left: 1em;
+    margin-top: 0.75em;
+  }
+}

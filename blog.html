@@ -1,0 +1,23 @@
+---
+layout: default
+title: Blog
+header_title: Blog
+header_image: /assets/images/header-blog.jpg
+permalink: /blog/
+---
+
+{% include page-header.html %}
+<div class="blog-list">
+  {% for post in site.posts %}
+  <div class="post-preview">
+    {% if post.featured_image %}
+    <div class="post-thumb" style="background-image: url('{{ post.featured_image | relative_url }}')"></div>
+    {% endif %}
+    <div class="post-preview-body">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}{% if post.author %} &middot; by {{ post.author }}{% endif %}</p>
+      <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,4 @@
+- author: "Mohammed Khalfan"
+  date: "2019-12-11"
+  content: |
+    <p>I like the use of the take operator. You can also use .first() to select the first item omitted from the channel, or first() with a regex or conditional to select the first item omitted from the channel which matches the regex or condition. .raondomSample(int) is useful for development as well.</p>

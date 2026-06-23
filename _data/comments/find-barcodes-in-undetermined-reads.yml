@@ -1,0 +1,4 @@
+- author: "soundsgood"
+  date: "2024-10-16"
+  content: |
+    <p>This python code might be helpful to find out the mixed indexes from the Undetermined fastq files. But is the input FASTQ file for this code meant for single reads, or can it be applied to a combined FASTQ file of paired reads?</p>

@@ -1,0 +1,165 @@
+- author: "Minju Kim"
+  date: "2016-11-29"
+  content: |
+    <p>Hi,<br />
+    I am Minju, a master student of Dept. of Biology, performing computational research with HTS data.</p>
+    <p>my question is that where could I get the file, GenomeAnalysisTK.jar. because the Broad Institute, the developer, only provide GenomeAnalysisTK.tar which means I can&#8217;t execute the commands(specifically I am stuck in the Step 8: raw variant calling) </p>
+    <p>&#8220;Error: Unable to access jarfile GenomeAnalysisTK.jar&#8221;<br />
+    error message from the mercer.</p>
+    <p>I want to ask you some solutions either for A or B.</p>
+    <p>A. how can I modify the command given in Step 8, if I want to call the variants with GATK.tar<br />
+    B. where should I get GATK.jar</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2016-11-29"
+      content: |
+        <p>Hi Minju,</p>
+        <p>On mercer, you need to call the full path to the GATK jar file (after loading the GATK module). Your command should look like this:</p>
+        <p>java -jar /share/apps/gatk/3.3-0/GenomeAnalysisTK.jar -T HaplotypeCaller -R ref -I realigned_reads.bam -o raw_variants.vcf</p>
+    - author: "Nadia"
+      date: "2019-09-25"
+      content: |
+        <p>.tar is the compressed form of the GATK tool.<br />
+        uncompressed it using a linux command<br />
+        tar -zxvf yourfile.tar.gz</p>
+
+- author: "Wilfrid Carre"
+  date: "2017-01-12"
+  content: |
+    <p>Hi,</p>
+    <p>I use more or leass the same tools.<br />
+    Several comments on your pipeline:<br />
+    Where do you put the read groups in the BAM that are necessary for GATK ?<br />
+    The Base Quality Score Recalibration from GATK works with dbSNP and not with the variant you just call for the -knownSites option. Read the manual from GATK : <a href="https://software.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_bqsr_BaseRecalibrator.php" rel="nofollow ugc">https://software.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_bqsr_BaseRecalibrator.php</a><br />
+    The point of the recalibration is to use known genuine SNP in order to improve your calling.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2017-01-12"
+      content: |
+        <p>Hi Wilfrid,</p>
+        <p>Thanks for your feedback. Answers to your questions:</p>
+        <p>1) The read groups are provided during the alignment step. I&#8217;ve updated the post to include this (step 1)</p>
+        <p>2) You are correct, and where possible you should use a &#8216;gold standard&#8217; set of variants for the BQSR step. Unfortunately, this data is not available for all organisms, and in these cases, it is necessary to do what is known as &#8216;bootstrapping&#8217; to produce a set of variants to use at this step, which is what I have demonstrated above. See: <a href="http://gatkforums.broadinstitute.org/wdl/discussion/1247/what-should-i-use-as-known-variants-sites-for-running-tool-x" rel="nofollow ugc">http://gatkforums.broadinstitute.org/wdl/discussion/1247/what-should-i-use-as-known-variants-sites-for-running-tool-x</a></p>
+        <p>See &#8220;Important Notes&#8221; above: The pipeline assumes no known variants are available for the Base Quality Score Recalibration step and as such bootsraps a set of SNPs and Indels to provide as input at this step.</p>
+
+- author: "Kai Feng"
+  date: "2017-01-14"
+  content: |
+    <p>Hi there, </p>
+    <p>your pipeline is quite straightforward and promising, I figured out this was done on only one sample, can you provide a detailed instruction on multiple samples?</p>
+    <p>Thanks,</p>
+    <p>Kai</p>
+
+- author: "Malisa"
+  date: "2017-02-19"
+  content: |
+    <p>Hi,</p>
+    <p>I am a PHD student and trying to run the codes step by step. When I followed the steps and ran Step 10, there were warnings said &#8220;undefined variable MQRankSum&#8221;. How can I solve this problem? Thanks for your time.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2017-02-22"
+      content: |
+        <p>Hi Malisa,</p>
+        <p>Is this happening only for certain lines? If so, I believe this means that there is no MQRankSum annotation for that particular site. In this case, you can ignore these warnings.</p>
+
+- author: "David willmore"
+  date: "2017-02-21"
+  content: |
+    <p>Hi Mohammed,</p>
+    <p>The pipeline you elaborated is good, please keep up the good work. It will help many. You have explained it well and kept it simple and lucid.<br />
+    well, i was wondering, from where &#8220;depth_out.txt&#8221; you are sourcing out?<br />
+    just i am curious to know&#8230;</p>
+    <p>Keep up the good work !!!</p>
+    <p>Cheers,<br />
+    David</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2017-02-22"
+      content: |
+        <p>Hi David,</p>
+        <p>Thanks for the kind words! the &#8217;depth_out.txt&#8217; file is created using the samtools depth utility, see Step 3 above (Collect Alignment &amp; Insert Size Metrics).</p>
+
+- author: "irene"
+  date: "2017-02-23"
+  content: |
+    <p>Hi David really nice work!<br />
+    Just a quick question. The GATK website says that you actually don&#8217;t need to run IndelRealigner if you are going to use Haplotypecaller. But this is in your steps. Would you recommend it anyway?</p>
+    <p>thanks<br />
+    ib</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2017-03-12"
+      content: |
+        <p>Hi Irene, thanks for the feedback! At the time of writing this post, IndelRealigner was a recommended step in the GATK best practices. With the latest version of Haplotypecaller, it seems this step is no longer required, so I think you are safe to skip it.</p>
+
+- author: "irene"
+  date: "2017-02-23"
+  content: |
+    <p>Apologies misread your name Mohammed &#128578;</p>
+
+- author: "Reza"
+  date: "2017-03-09"
+  content: |
+    <p>Hi<br />
+    In step 10 i want to add &#8220;GQ &lt; 30&quot; but GQ is not in INFO field, how can i do it? it must be as following order.</p>
+    <p>&#8211;filterExpression &quot;QUAL  60.0 || MQ &lt; 30.0 || DP &lt; 10 || GQ &lt; 30&quot;</p>
+    <p>Thanks in advance</p>
+
+- author: "Gepoliano Chaves"
+  date: "2017-03-30"
+  content: |
+    <p>Hi Mohammed, </p>
+    <p>Thanks for your pipeline, it helped me a lot on calling SNPs from the files I work with. Now, I have a question about statistics, how can I know that the SNPs I have identified in this pipeline are actually significant? Which statistical test should I choose, if so, and how do I apply such test to the data-set?</p>
+
+- author: "Deepa Krishna"
+  date: "2017-05-25"
+  content: |
+    <p>Hi,</p>
+    <p>I am a Masters student, I was looking for something similar to workflow presented here and am glad I came across your work. </p>
+    <p>You mentioned about Compile Statistics in step 22, a Tool, parse_metrics.sh (in-house). Am interest in knowing how it works and I would like to use it to produce the report.</p>
+    <p>Thank you</p>
+
+- author: "Bandana"
+  date: "2017-06-02"
+  content: |
+    <p>I have one question, can I apply this pipleline for plant viruses? Also, how can I create a custom SnpEff Database?</p>
+
+- author: "Tom"
+  date: "2017-09-22"
+  content: |
+    <p>Hi<br />
+    I&#8217;m wondering if an extra &#8220;SelectVariants&#8221; step is necessary to select only SNP with &#8220;PASS&#8221; tag after step 10 before used as knownsites in Step12. I&#8217;ve seen an example doing SelectVariants with -select &#8216;vc.isNotFiltered()&#8217;. Does BaseRecalibrator use SNP with &#8216;PASS&#8221; tag only in filtered_snps.vcf? I appreciate your insights.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2017-09-28"
+      content: |
+        <p>Hi Tom,</p>
+        <p>This is not necessary. BQSR will only consider SNPs with &#8220;PASS&#8221; when doing recalibration, so you can give it filtered_snps.vcf directly.</p>
+
+- author: "nord"
+  date: "2017-10-13"
+  content: |
+    <p>your pipeline is good. Can you recommend your paper using this pipeline to analyse  to me? Thanks very much.</p>
+
+- author: "irene"
+  date: "2017-11-19"
+  content: |
+    <p>Hi Mohammed,<br />
+    can you run step 20 if you have done steps 16-19 in g mode?<br />
+    if yes, can you please share the command?<br />
+    thanks,<br />
+    ib</p>
+
+- author: "D. Bautista PhD"
+  date: "2018-01-14"
+  content: |
+    <p>Your pipeline is quite thorough. I&#8217;m wondering if this is available to non NYU users.</p>
+
+- author: "Thippesh Sannasiddappa"
+  date: "2018-06-20"
+  content: |
+    <p>Hi Mohammed, </p>
+    <p>Thanks for posting nice and detailed analysis pipeline for variant calling. I am doing bacterial genome SNP/indel calling. I have few questions to ask;<br />
+    1. Which versions of GATK, SnpEff, Samtools, Bedtools were used in your pipeline?<br />
+    2. What parameters you suggest for filtering SNPs/Indels for bacterial genomes?<br />
+    3. What these parameters mean: QD  200.0, ReadPosRankSum  10.0? Are there any cut off standards for calling SNPs/Indels for bacterial genomes?</p>

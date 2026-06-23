@@ -1,0 +1,450 @@
+- author: "Eric Borenstein"
+  date: "2020-04-03"
+  content: |
+    <p>This workflow can also be ran as an SBATCH rather than interactively. The SBATCH options to change would be job-name, output, and possibly time. The resources set in SBATCH are only for the job controller nextflow and not the actual compute, so no need to increase. The resources for your compute would be set in the config file given.  Job process can be monitored in the slurm output file you set.</p>
+    <p>#!/bin/bash</p>
+    <p>#SBATCH &#8211;nodes=1<br />
+    #SBATCH &#8211;ntasks-per-node=1<br />
+    #SBATCH &#8211;cpus-per-task=2<br />
+    #SBATCH &#8211;time=5:00:00<br />
+    #SBATCH &#8211;mem=2GB<br />
+    #SBATCH &#8211;job-name=myJob<br />
+    #SBATCH &#8211;output=slurm_%j.out<br />
+    module purge<br />
+    module load nextflow/20.10.0</p>
+    <p>nextflow run main.nf -c your.config</p>
+
+- author: "MARION"
+  date: "2020-05-01"
+  content: |
+    <p>Thank you so much for this elaborate workflow Mohammed. However I am continuously getting this error nextflow.exception.AbortOperationException: Not a valid project name: main.nf when I run nextflow run main.nf. Thank you in advance!</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-05-04"
+      content: |
+        <p>This error means there is no main.nf file in your working directory. You should change into the directory where the main.nf script is located and then run nextflow run main.nf.</p>
+
+- author: "Darach"
+  date: "2020-05-03"
+  content: |
+    <p>Glad to see you could use that filter/tap trick, and the adoption of nextflow generally. Cleanly written.</p>
+    <p>Does NYU HPC let you use Docker?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-05-04"
+      content: |
+        <p>Thank you Darach, I'm really liking nextflow. There are a couple other workflows on our git too. Have you had the opportunity to test out the modules feature? I'm interested to try that next. </p>
+        <p>We use Singularity on the HPC which supports the use of Docker containers.</p>
+
+- author: "Darach"
+  date: "2020-05-04"
+  content: |
+    <p>No, I haven't seen modules yet. It looks like a really smart idea. I look forward to what y'all write in that;  I know that'll be really cleanly done. </p>
+    <p>Ah, so it makes sense to write it as a Docker recipe, because then that's more flexible for users in both platforms. Presumably folks using cloud-computing will appreciate that.</p>
+    <p>I'm going to copy the way you're writing channel operators in the actual input field. I hadn't thought to do that, and I think that style is a much cleaner way of organizing nextflow. Thanks for sharing your code with everyone, for direct use and inspiration.</p>
+
+- author: "Mohammed Khalfan"
+  date: "2020-05-06"
+  content: |
+    <p>Thank you for the kind words Darach, I value your feedback.</p>
+
+- author: "Marion"
+  date: "2020-05-07"
+  content: |
+    <p>Hi Mohammed, I got an error at the markDuplicatesSpark step caused by: java.lang.IllegalStateException: Duplicate key A00431:16:H5JTVDSXX:1:1101:27308:32972 (attempted merging values -1 and -1). I wonder what it is all about, I have tried to figure out how to go about this and failed. Thank you in advance.</p>
+
+- author: "Marion"
+  date: "2020-05-08"
+  content: |
+    <p>Was able to resolve this by upgrading my GATK version from V4.0.4.0 to V4.0.5.0. Thank you!</p>
+
+- author: "Crystal"
+  date: "2020-05-21"
+  content: |
+    <p>Hi there,<br />
+    Iam continuosly getting this error below;<br />
+    Process `haplotypeCaller (1)` terminated with an error exit status (2)<br />
+    A USER ERROR has occurred: Traversal by intervals was requested but some input files are not indexed.<br />
+     Please index all input files:<br />
+    samtools index &#8230;&#8230;&#8230;&#8230;&#8230;&#8230;._sorted_dedup.bam</p>
+    <p>Set the system property GATK_STACKTRACE_ON_USER_EXCEPTION (&#8211;java-options '-DGATK_STACKTRACE_ON_USER_EXCEPTION=true') to print the stack trace.<br />
+    I attempted to index it manually with samtools however when I resumed the process. it couldn't locate my indexed bam files.<br />
+    Your help is much appreciated.</p>
+
+- author: "Yoshi"
+  date: "2020-07-08"
+  content: |
+    <p>Hi, Mohammed. Thank you for the great pipeline.<br />
+    I would like to use this pipeline for strain tracking of pathogenic bacteria in our society based on SNVs, and I have one question.</p>
+    <p>How can we mask (exclude) some genomic regions from the reference genome ? To go around false-positive SNVs, we usually exclude repetitive region as short reads are not correctly mapped to these regions. We also exclude dense SNVs that are due to incorrect mapping using filtering of window size  12 bp. Can we do this as well ? Many thanks for your kind support.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-09-10"
+      content: |
+        <p>Hi Yoshi,</p>
+        <p>You can use provide haplotypecaller with an intervals file with the -L option, and it will work on only the regions defined in this file. See <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists" rel="nofollow ugc">https://gatk.broadinstitute.org/hc/en-us/articles/360035531852-Intervals-and-interval-lists</a>.</p>
+
+- author: "Diego"
+  date: "2020-08-25"
+  content: |
+    <p>Hi Mohammed, thanks so much for this comprehensive pipeline. I was wondering, do I need to cat  and  trim (with trimmomatic) my raw reads prior to starting the pipeline?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-08-27"
+      content: |
+        <p>Hi Diego, there is no strict rule, but it's probably better to do this.</p>
+
+- author: "Niyomi"
+  date: "2020-09-01"
+  content: |
+    <p>Is this pipeline for an individual sample?  I don't see any merging steps anywhere. At what point should I merge the samples if I were to use this? BAM files or the VCF's?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-09-02"
+      content: |
+        <p>Hi Niyomi,</p>
+        <p>This pipeline operates HaplotypeCaller in its default mode on a single sample. If you would like to do joint genotyping for multiple samples, the pipeline is a little different. You would need to add the <code>-ERC GVCF</code> option to HaplotypeCaller to generate an intermediate GVCF, and then run gatk GenotypeGVCFs using the intermediary GVCFs as input.</p>
+
+- author: "Niyomi"
+  date: "2020-09-03"
+  content: |
+    <p>Thank you for your reply. Yes, I am familiar with the -ERC GVCF. My question is, do you use this pipeline to process each sample individually or do you merge samples at any point? In other words, do I follow this pipeline 250 times for 250 samples? Thank you in advance.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-09-10"
+      content: |
+        <p>This pipeline operates on each sample individually, it does not merge samples at any point, so yes you would follow the pipeline 250 times for 250 samples. The nextflow script takes care of this.</p>
+    - author: "Ashok"
+      date: "2021-04-19"
+      content: |
+        <p>Hi Niyomi,</p>
+        <p>I am running it on multiple human genome sequence samples (bam files). Could you please share your experience of working to adopt this script to multiple samples?</p>
+
+- author: "Julia Xing"
+  date: "2020-09-10"
+  content: |
+    <p>Which steps should I customize if I use single read sequencing instead of paired end run? Thanks a lot!</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-09-10"
+      content: |
+        <p>Primarily the alignment step, and the way input reads are parsed by nextflow. CollectInsertSizeMetrics in the parse metrics step will fail, as will this part of the final QC step.</p>
+
+- author: "XiaTian"
+  date: "2020-11-09"
+  content: |
+    <p>Thanks for your sharing. Still I have a basic question. When we use GATK HaplotypeCaller, it costs a lot of time (800M genome, 15* coverage, 5-7days, per sample). Should I set &#8220;NUMBERTHREADS&#8221;  or &#8220;Xmx96g&#8221;in this step?</p>
+
+- author: "Nathalia"
+  date: "2020-11-16"
+  content: |
+    <p>Hello, thanks for this pipeline, it's very helpful!<br />
+    I was able to substitute bwa for minimap2 command, however with minimap2 I need to use picard AddOrReplaceReadGroups command before gatk MarkDuplicatesSpark. Can I add another process in main.nf? I've tried, but no success so far.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-12-02"
+      content: |
+        <p>Hi Nathalia, you can add another process but you will also need to setup the input channel to send data into that process, and setup the channel to send output from the new process to MarkDuplicatesSpark.</p>
+
+- author: "zeeshan Fazal"
+  date: "2020-12-02"
+  content: |
+    <p>Hi Mohammed<br />
+    I am trying to do variant calling and I have human cell lines. I am really confused that why your pipeline doesn't not use  Goldstandard SNPs and dbSNPs like in GATK? And Can i Run this for human data?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2020-12-02"
+      content: |
+        <p>Hi Zeehan,</p>
+        <p>This workflow is adapted for organisms that do not have gold standard SNPs available. If you're working with human data I would check out broads official workflows such as this one: <a href="https://github.com/gatk-workflows/gatk4-germline-snps-indels" rel="nofollow ugc">https://github.com/gatk-workflows/gatk4-germline-snps-indels</a></p>
+      replies:
+        - author: "zeeshan Fazal"
+          date: "2020-12-04"
+          content: |
+            <p>Thanks Mohammed!</p>
+          replies:
+            - author: "Ashok"
+              date: "2021-04-19"
+              content: |
+                <p>Hi Zeeshan,</p>
+                <p>I am running it on multiple human genome sequence samples (bam files) where we have multiple gold standard resources. Am I supposed to mention them as parameters and use them just like reference file? Could you please explain what you followed?</p>
+                <p>Many thanks!</p>
+        - author: "xiaochen"
+          date: "2021-03-21"
+          content: |
+            <p>Hi,<br />
+                 This pipeline is for diploid or haploid organism? I used this pipeline in haploid and found many AF=0.5 snps or indels ? Can you help me ?Thank you .</p>
+          replies:
+            - author: "Harish"
+              date: "2021-07-13"
+              content: |
+                <p>The reason for that is GATK by default tends to assume that the variants are being called for a diploid organism. You can change that by using the '--ploidy ' switch in HaplotypeCaller.</p>
+
+- author: "VIVEK RUHELA"
+  date: "2020-12-14"
+  content: |
+    <p>Hello,<br />
+    My question is that why the BQSR step is after haplotype variant calling. I think all the BAM record post-processing (like sort + remote duplicates + BQSR) should be before variant calling. Let me know if this is wrong? Can I follow the same step for somatic mutation identification (using mutect2 in place of gatk haplotype caller)?</p>
+
+- author: "Matt LaBella"
+  date: "2021-02-25"
+  content: |
+    <p>Hi Mohammed, </p>
+    <p>First thank you for providing this pipeline publicly, I'm learning a lot! I ran into an error at the getMetrics step and I wasn't sure if I just made a simple mistake. The error is: </p>
+    <p>  .command.sh: line 2: PICARD_JAR: unbound variable</p>
+    <p>Thanks again, Matt</p>
+  replies:
+    - author: "Jaikrishna"
+      date: "2021-11-26"
+      content: |
+        <p>Have been facing the same issue. Would be great if someone can share a fix</p>
+      replies:
+        - author: "Mohammed Khalfan"
+          date: "2021-12-08"
+          content: |
+            <p>Are you using the container? the $PICARD_JAR variable exists within the container.</p>
+    - author: "Vinoy"
+      date: "2022-03-09"
+      content: |
+        <p>I am getting the same error. Any advice to fix it. Thanks</p>
+
+- author: "Hassan Badrane"
+  date: "2021-06-14"
+  content: |
+    <p>I would also like to thank Mohammed for this very useful pipeline. I'm a beginner and I knew it will take me a while to build my own pipeline, so having this very elaborated pipeline was wonderful and it saved me a lot of time. I successfully run the pipeline on close to 100 yeast strains, with a few customizations. I run the pipeline directly using the preinstalled Nextflow module, and not by creating the nextflow env, which was a bit difficult as it generated many errors.<br />
+    In case this can help someone, one thing that helped me in the process is the configuration of Nextflow to run as a slurm. This can be done by editing the "nextflow.config" file to something like this:<br />
+    // Nextflow Parameters<br />
+    process {<br />
+      executor = 'slurm'<br />
+    }</p>
+
+- author: "Harish"
+  date: "2021-07-09"
+  content: |
+    <p>Hi! Thanks for the pipeline. It was a good step for me to start learning Nextflow! </p>
+    <p>What I was wondering is, how do you cache the results from MarkDuplicates? Everytime the pipeline fails, I need to start from Marking the duplicates.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2021-12-08"
+      content: |
+        <p>You would need to *delete* the lines (not comment out) where you make the temp directory and remove it (first and last lines in the process), and remove the parameter that tells GATK to use the tmpdir. The use of a temporary directory, and the way it is named when created, results in the underlying code being different every time the script it run and this causes the pipeline to resume from the step. The temporary directory was introduced originally because the compute nodes where the processes run were running out of space when working with larger datasets.</p>
+
+- author: "Harish"
+  date: "2021-07-13"
+  content: |
+    <p>Hi Mohammed!</p>
+    <p>I was wondering why doesn't subsequent steps after alignment cache the results? I keep having to mark the dups each time from alignments. Is there any way to force trigger it? cache deep/true/lenient is not picking up the files as does resume.</p>
+
+- author: "Ram"
+  date: "2021-07-13"
+  content: |
+    <p>Hi Mohammed Khalfan, I would like to request you to add scripts for the Mutect2 (to call somatic variants) and at which step (parallel to Haplotype Caller) it should be incorporated in the pipeline and what steps should be done next.</p>
+    <p>Thanks in advance !!!</p>
+
+- author: "Francesco"
+  date: "2021-08-26"
+  content: |
+    <p>Dear Mohammed, I am experimenting with your workflow from outside NYU. As a test run, I am working with a short reference sequence, and only 5% of my reads are actually mapping there. In order to avoid huge sam/bam files,  would you advise to filter the initial sam for mapped reads only (inverse-grepping AS:i:0 or, in order to conserve pairs, based on the '2' bitwise flag)?<br />
+    By the way, thanks for your elaborate explanations, I will try to make good use of them.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2021-12-08"
+      content: |
+        <p>You could do that, but the pipeline takes fastq as input, so you would then need to convert the bamback to fastq, then use that as input. If you do decide to do that, you can use `samtools view -F 4 file.bam` to get mapped reads only from a bam file.</p>
+
+- author: "Tiago"
+  date: "2021-11-02"
+  content: |
+    <p>Hello, quando rodo: </p>
+    <p>		bash /guest/triatominae/tiagob/snp/m1/pasta/pasta/gatk-4.2.2.0/parse_metric.sh sample_id sample_id_ >  sample_id_report.csv</p>
+    <p>n&atilde;o gera pra mim . sample_id_report.csv, o que pode estar errado?</p>
+    <p>input:<br />
+    sample_id_alignment_metrics.txt<br />
+    sample_id_depth_out.txt<br />
+    sample_id_filtered_snps.vcf<br />
+    sample_id_filtered_snps_final.vcf<br />
+    sample_id_insert_metrics.txt<br />
+    sample_id_raw_snps.vcf<br />
+    sample_id_raw_snps_recal.vcf</p>
+    <p>parse_metric.sh &gt;&gt;&gt;<br />
+    #!/bin/bash<br />
+    ID=$1</p>
+    <p>input=${ID}_alignment_metrics.txt<br />
+    while read line<br />
+    do<br />
+    	if [[ $line == PAIR* ]];then<br />
+    		ALIGNMENT_METRICS=$(echo $line | cut -d' ' -f2,6,7,10,16,18 | tr ' ' ',')<br />
+    	fi<br />
+    done &lt; $input</p>
+    <p>re='^[0-9]+([.][0-9]+)?$'<br />
+    input=${ID}_insert_metrics.txt<br />
+    while read line<br />
+    do<br />
+    	MEAN_INSERT_SIZE=$(echo $line | cut -d' ' -f5)<br />
+    	if [[ $MEAN_INSERT_SIZE =~ $re ]];then<br />
+            	break<br />
+    	fi<br />
+    done &gt; ../report.csv</p>
+
+- author: "Tiago"
+  date: "2021-11-02"
+  content: |
+    <p>Tiago &middot; 2021-11-02 at 2:00 pm<br />
+    Hello, when I run:</p>
+    <p>bash /guest/triatominae/tiagob/snp/m1/pasta/pasta/gatk-4.2.2.0/parse_metric.sh sample_id sample_id_ &gt; sample_id_report.csv<br />
+    #&#8212;&#8212;&#8212;#&#8212;&#8212;&#8212;#&#8212;&#8212;&#8212;<br />
+    don't generate for me = sample_id_report.csv, what can be wrong?<br />
+    #&#8212;&#8212;&#8212;#&#8212;&#8212;&#8212;#&#8212;&#8212;&#8212;<br />
+    input file:</p>
+    <p>sample_id_alignment_metrics.txt<br />
+    sample_id_depth_out.txt<br />
+    sample_id_filtered_snps.vcf<br />
+    sample_id_filtered_snps_final.vcf<br />
+    sample_id_insert_metrics.txt<br />
+    sample_id_raw_snps.vcf<br />
+    sample_id_raw_snps_recal.vcf<br />
+    #&#8212;&#8212;&#8212;<br />
+    parse_metric.sh (code)</p>
+    <p>#!/bin/bash<br />
+    ID=$1</p>
+    <p>input=${ID}_alignment_metrics.txt<br />
+    while read line<br />
+    do<br />
+    if [[ $line == PAIR* ]];then<br />
+    ALIGNMENT_METRICS=$(echo $line | cut -d' ' -f2,6,7,10,16,18 | tr ' ' ',')<br />
+    fi<br />
+    done  ../report.csv</p>
+
+- author: "SINUMOL GEORGE"
+  date: "2021-12-08"
+  content: |
+    <p>I want to run GATk to filter somatic variants? Please explain the workflow for human somatic variant calling.<br />
+    Thanks,<br />
+    Sinumol</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2021-12-08"
+      content: |
+        <p>This pipeline uses HaplotypeCaller which is meant for germline variants. Try mutect2 for somatic variants.</p>
+      replies:
+        - author: "sinu"
+          date: "2023-04-27"
+          content: |
+            <p>Could you please provide that workflow as well?</p>
+
+- author: "Joyce Wangari"
+  date: "2022-01-13"
+  content: |
+    <p>Hello, Mohammed I am trying to run the pipeline and it is giving me an error:<br />
+     Command executed:<br />
+      bwa mem 	-K 100000000 	-v 3 	-t 1 	-Y 	-R &#8220;@RG\tID:Tryp-B87_S2\tLB:Tryp-B87_S2\tPL:illumina\tPM:illumina\tSM:Tryp-B87_S2&#8221; 	-M {/node/cohort4/joyce/variant_calling/variant-calling-pipeline-gatk4/snpEff/data/genomes/IL3000.fa} 	Tryp-B87_S2_1.fastq 	Tryp-B87_S2_2.fastq 	&gt; Tryp-B87_S2_aligned_reads.sam<br />
+    Command exit status:<br />
+      1<br />
+    Command output:<br />
+      (empty)<br />
+    Command error:<br />
+      [E::bwa_idx_load_from_disk] fail to locate the index files</p>
+    <p>What should i do please?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2022-02-11"
+      content: |
+        <p>Need to make sure the BWA index files are in the same directory as the reference FASTA file.</p>
+
+- author: "Jellyfish"
+  date: "2022-01-16"
+  content: |
+    <p>hey dear Mohammed Khalfan~~~///(^v^)\\\~~~,<br />
+    thanks a lot for this amazing tutorial,<br />
+    when I run the step 4,there would always be like<br />
+    &#8220;java.lang.IllegalArgumentException: Something went wrong with sequence dictionary detection, check that reference has a valid sequence dictionary &#8221;<br />
+    I went though the first 3 steps smoothly ,and I&#8217;m pretty sure I have set everything all right,how can I handle this?</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2022-02-11"
+      content: |
+        <p>Need to make sure that the sequence dictionary (.dict file, built using Picard CreateSequenceDictionary tool) is in the same directory as the reference FASTA file.</p>
+
+- author: "Harun"
+  date: "2022-03-22"
+  content: |
+    <p>Hi Mohammed,<br />
+    thanks for this pipeline, it&#8217;s very helpful for understanding of the each step!<br />
+    All the best</p>
+
+- author: "Ziv"
+  date: "2022-11-20"
+  content: |
+    <p>Hi.<br />
+    Is it possible to modify this protocol to single-end sequences?</p>
+  replies:
+    - author: "Cassandra Buzby"
+      date: "2023-09-05"
+      content: |
+        <p>Hi Ziv, I have adjusted the pipeline for my own single-end sequences if you'd like me to send it over.</p>
+
+- author: "Joel"
+  date: "2023-01-28"
+  content: |
+    <p>Hi Mohammed Khalfan,</p>
+    <p>Thanks for this usefull tutorial, just wondering why you only do SNPeff on the SNPS and not on the indels? Or in other words merge SNP vcf and indels and than call SNPeff. Although indels are not in the name 'SNPeff' as far as I know it could handle indel variants and annotate them accordingly.</p>
+    <p>Thanks again, Joel</p>
+
+- author: "Kenneth"
+  date: "2023-10-09"
+  content: |
+    <p>Hi Mohammed,</p>
+    <p>Quick question about a workflow error I receive. The workflow gets stuck on step 2 MarkDuplicatesSpark with error: markDuplicatesSpark (1)' terminated with an error exit status (2). A USER ERROR has occurred: Failed to load reads from _aligned_reads.sam Caused by:Input path does not exist: file:_aligned_reads.sam</p>
+    <p>I'm confused by this error since the script creates the _aligned_reads.sam file in the nextflow working directory. Why can't the file be found?</p>
+    <p>Any help is greatly appreciated,<br />
+    Kenneth</p>
+
+- author: "Stefany"
+  date: "2024-06-26"
+  content: |
+    <p>Hello!<br />
+    I`m running this pipeline in Coffea mutants, however I&#8217;m not sure if instead should have used Mutect2. Also, I&#8217;m not familiar with this sort of analysis, therefore I&#8217;m not really sure what to expect for the final output (*.ann.vcf file).  Could you post a tinny example of how it should look like if ran successfully?</p>
+    <p>In addition, could you share de parse_metrics.sh script?</p>
+    <p>Best wishes,<br />
+    Stefany</p>
+
+- author: "Sakshi"
+  date: "2024-07-29"
+  content: |
+    <p>Hi, I want to perform variant calling in Soybean. First question is -will the script be helpful for plant genomes?<br />
+    Second, &#8211; how can we detect variants for two samples -resistant vs susceptible. and can we merge  the two samples and then combinedly call variants?</p>
+
+- author: "perla"
+  date: "2024-08-15"
+  content: |
+    <p>Hi Mohammed,<br />
+    Im trying to run the script on step 5:</p>
+    <p>gatk SelectVariants \<br />
+            -R ref.fa \<br />
+            -V raw_variants.vcf \<br />
+            -selectType SNP \<br />
+            -o raw_snps.vcf</p>
+    <p>but when i use it it gives me this error: A USER ERROR has occurred: -selectType is not a recognized option</p>
+    <p>sorry if my question is simple or obvious. im very new into this topic thank you.</p>
+  replies:
+    - author: "Mohammed Khalfan"
+      date: "2024-08-15"
+      content: |
+        <p>It should be <code>-select-type SNP</code>, I&#8217;ve updated the post.</p>
+
+- author: "Sineshaw Legese"
+  date: "2024-09-26"
+  content: |
+    <p>Hello Mohammed, I have multiple VCF files from various samples. How can I prepare these samples for the Bootstrapping step?</p>
+
+- author: "Akriti"
+  date: "2024-10-08"
+  content: |
+    <p>Hi,</p>
+    <p>Great tutorial. I am using this pipeline to do variant calling on a diploid S.cervisiae. When I used it default  params.hc_config = &#8220;-ploidy 1, it worked, but when I changed it to 2. I am getting this error:<br />
+    Error executing process &gt; &#8216;qualimap (1)&#8217;                                                                                                                                                             </p>
+    <p>Caused by:<br />
+      Process `qualimap (1)` terminated with an error exit status (140) </p>
+    <p>Any help would be great</p>
+    <p>Best,<br />
+    Akriti</p>

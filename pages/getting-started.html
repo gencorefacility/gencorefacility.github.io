@@ -1,0 +1,111 @@
+---
+layout: page
+title: Getting Started
+permalink: /bioinformatics/getting-started/
+header_image: /assets/images/header-bioinformatics.jpg
+---
+
+<h2 class="text-purple">Gaining Access to Sequencing Data on the HPC</h2>
+
+<p>To access your sequencing data on the NYU HPC cluster, you will need to:</p>
+
+<ol>
+  <li><strong>Create an HPC account</strong> by visiting the <a href="https://wikis.nyu.edu/display/NYUHPC" target="_blank">NYU High Performance Computing Wiki</a> and following the account creation procedures.</li>
+  <li><strong>Submit a request</strong> using the <a href="https://forms.bio.nyu.edu/2-2/computational_needs/" target="_blank">Biology Computation Support Form</a> to join the CGSB Linux working group and gain permission to your lab's sequencing results directory.</li>
+</ol>
+
+<hr>
+
+<h2 class="text-purple">Data Policy and Retention</h2>
+
+<ul>
+  <li>Demultiplexed and raw lane fastq files are transferred to lab directories at <code>/projects/rps/cgsb</code> on the HPC.</li>
+  <li>Lab owners receive read access to fastq files in this location.</li>
+  <li>Data in lab directories is backed up and is not subject to deletion.</li>
+  <li>Raw and processed sequencing directories are archived and retained for a minimum of five years.</li>
+  <li>Raw sequencing directories are available upon request.</li>
+  <li>Lab shares are kept up to 3 years after PI departure from CGSB.</li>
+</ul>
+
+<hr>
+
+<h2 class="text-purple">HPC Best Practices</h2>
+
+<ul>
+  <li>Run jobs and save output in your personal scratch directory: <code>/scratch/netID/my-project/job-xyz/</code></li>
+  <li>Store Slurm scripts in job or project directories to enable parameter verification and reproducibility.</li>
+  <li>Keep personal scripts (Python, executables) in your home folder: <code>/home/netID/</code></li>
+  <li>Reference scripts from your home directory using the <code>$HOME</code> variable in Slurm submissions.</li>
+  <li>Request unavailable software packages from <a href="mailto:hpc@nyu.edu">hpc@nyu.edu</a>; check existing modules via <code>module avail</code>.</li>
+</ul>
+
+<hr>
+
+<h2 class="text-purple">HPC Important Locations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Directory</th>
+      <th>Path</th>
+      <th>Quota</th>
+      <th>Flushing</th>
+      <th>Backup</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GenCore Fastq Delivery</td>
+      <td><code>/projects/rps/cgsb/gencore/out/</code></td>
+      <td>&mdash;</td>
+      <td>Protected</td>
+      <td>Yes</td>
+      <td>Sequencing output files</td>
+    </tr>
+    <tr>
+      <td>Lab Share</td>
+      <td><code>/projects/cgsb/</code></td>
+      <td>Subject to charges</td>
+      <td>Protected</td>
+      <td>Cloud</td>
+      <td>Lab collaboration and results sharing</td>
+    </tr>
+    <tr>
+      <td>Personal Scratch</td>
+      <td><code>/scratch/netID/</code></td>
+      <td>5TB</td>
+      <td>60-day deletion</td>
+      <td>No</td>
+      <td>Active analysis work</td>
+    </tr>
+    <tr>
+      <td>Personal Home</td>
+      <td><code>/home/netID/</code></td>
+      <td>50GB</td>
+      <td>Protected</td>
+      <td>Yes</td>
+      <td>Custom scripts and tools</td>
+    </tr>
+    <tr>
+      <td>Personal Archive</td>
+      <td><code>/archive/netID/</code></td>
+      <td>2TB</td>
+      <td>Protected</td>
+      <td>Yes</td>
+      <td>Completed archived analyses</td>
+    </tr>
+    <tr>
+      <td>Shared Genomes</td>
+      <td><code>/projects/work/cgsb/genomes</code></td>
+      <td>&mdash;</td>
+      <td>Protected</td>
+      <td>Yes</td>
+      <td>Common genomic datasets</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To establish a shared lab directory, please submit a <a href="https://forms.bio.nyu.edu/2-2/computational_needs/" target="_blank">Lab Share Directory Form</a>.</p>
+
+<p>For shared genome resources, see the <a href="/projects/work/cgsb/genomes" target="_blank">Shared Genome Resource</a> documentation.</p>

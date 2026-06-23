@@ -1,0 +1,87 @@
+---
+layout: home
+title: Genomics Core
+header_title: Genomics Core
+subtitle: Providing next-generation sequencing and scientific support to the NYU community
+header_image: /assets/images/hero-bg.jpg
+---
+
+<div class="page-content">
+  <!-- Icon Buttons -->
+  <div class="container text-center" style="margin-top: -20px; position: relative; z-index: 4;">
+    <div class="icon-buttons" style="background: #fff; padding: 1.5em 2em; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: inline-flex;">
+      <a href="https://bookit.bio.nyu.edu" class="icon-btn" style="color: #333;">
+        <div class="icon-circle" style="border-color: #2196F3; color: #2196F3;">&#128218;</div>
+        <span style="color: #333;">BookitLab</span>
+        <br><small style="color: #999; font-size: 0.7rem;">Reserve shared equipment</small>
+      </a>
+      <a href="https://tuboweb.bio.nyu.edu" class="icon-btn" style="color: #333;">
+        <div class="icon-circle" style="border-color: #4CAF50; color: #4CAF50;">&#128300;</div>
+        <span style="color: #333;">TuboWeb</span>
+        <br><small style="color: #999; font-size: 0.7rem;">Manage sequencing runs</small>
+      </a>
+      <a href="https://learn.gencore.bio.nyu.edu" class="icon-btn" style="color: #333;">
+        <div class="icon-circle" style="border-color: #9C27B0; color: #9C27B0;">&#127891;</div>
+        <span style="color: #333;">Training</span>
+        <br><small style="color: #999; font-size: 0.7rem;">Request or join a training course</small>
+      </a>
+      <a href="https://learn.gencore.bio.nyu.edu" class="icon-btn" style="color: #333;">
+        <div class="icon-circle" style="border-color: #FF9800; color: #FF9800;">&#128214;</div>
+        <span style="color: #333;">Learn</span>
+        <br><small style="color: #999; font-size: 0.7rem;">Learn genomics &amp; NGS analysis</small>
+      </a>
+    </div>
+  </div>
+
+  <!-- Blog Posts Preview -->
+  <div class="container home-blog-section">
+    <h2>Blog Posts</h2>
+    <div class="home-blog-grid">
+      {% for post in site.posts limit:3 %}
+      <div class="home-blog-card">
+        {% if post.featured_image %}
+        <div class="card-image" style="background-image: url('{{ post.featured_image | relative_url }}')"></div>
+        {% endif %}
+        <div class="card-body">
+          <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+          <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
+  </div>
+
+  <!-- Location Section -->
+  <div class="container location-section">
+    <h2>Location</h2>
+    <div class="location-grid">
+      <div class="location-card">
+        <h3>New York</h3>
+        <p>NYU Center for Genomics &amp; Systems Biology<br>
+        12 Waverly Place, New York, NY 10003</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2!2d-73.9968!3d40.7295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599787834ad9%3A0x4b5d69039bba498a!2sCenter%20for%20Genomics%20and%20Systems%20Biology!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" loading="lazy"></iframe>
+      </div>
+      <div class="location-card">
+        <h3>Abu Dhabi</h3>
+        <p>New York University Abu Dhabi<br>
+        Saadiyat Marina District<br>
+        Abu Dhabi, United Arab Emirates</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.8!2d54.4340!3d24.5236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e6636b7291ceb%3A0xf69e6e1a46a3b4cb!2sNew%20York%20University%20Abu%20Dhabi!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner Logos -->
+  <div class="container text-center">
+    <div class="partner-logos">
+      <a href="https://cgsb.as.nyu.edu"><img src="{{ '/assets/images/logos/cgsb_logo-1.png' | relative_url }}" alt="CGSB"></a>
+      <a href="https://www.nyu.edu"><img src="{{ '/assets/images/logos/nyu.png' | relative_url }}" alt="NYU"></a>
+    </div>
+  </div>
+
+  <!-- Bottom Image -->
+  <div style="margin-top: 2em;">
+    <img src="{{ '/assets/images/lab-bottom.jpg' | relative_url }}" alt="Genomics Core Lab" style="width: 100%; max-height: 300px; object-fit: cover;">
+  </div>
+</div>

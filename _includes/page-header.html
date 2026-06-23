@@ -1,0 +1,10 @@
+{% assign header_img = page.header_image | default: '/assets/images/hero-bg.jpg' %}
+<div class="page-header {% if page.layout == 'home' %}hero{% endif %}" style="background-image: url('{{ header_img | relative_url }}')">
+  <div class="page-header-content">
+    <h1>{{ page.header_title | default: page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="page-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+    {{ content }}
+  </div>
+</div>

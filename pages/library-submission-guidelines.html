@@ -1,0 +1,110 @@
+---
+layout: page
+title: Library Submission Guidelines
+permalink: /sequencing/library-submission-guidelines/
+header_image: /assets/images/header-sequencing.jpg
+---
+
+<div class="tab-group">
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="tab-ny">New York</button>
+    <button class="tab-btn" data-tab="tab-ad">Abu Dhabi</button>
+  </div>
+
+  <div id="tab-ny" class="tab-content active">
+
+    <h5><strong>How to Prepare Libraries for Submission:</strong></h5>
+    <p>Labs are responsible for their own QC (quantification and fragment analysis) and library pooling prior to submission. Researchers must receive an official run confirmation from GenCore before physical submission of their pool.</p>
+
+    <h5><strong>General Instructions:</strong></h5>
+    <ul>
+      <li>Quantify stock libraries with qPCR and adjust the concentration of the final libraries (according to the table below) using 10 mM Tris-HCL, pH 8.0 + 0.05% Tween 20.
+        <ul>
+          <li>The Quick Reference Guide for the KAPA Protocol can be found <strong><a href="https://docs.google.com/document/d/1UIO19cF6EwfvHyQXFxom1lY4P_GrAb-G__TPxdrmZyg/edit#" target="_blank" rel="noopener">here</a></strong>. KAPA reagents are available for purchase through GenCore.</li>
+        </ul>
+      </li>
+      <li>If quantifying using <u>Qubit</u>, use <a href="https://drive.google.com/open?id=1y8p0hcH5tLeB4VUkZwvIpd8huVlh2dDAcctNDVfB1XM" target="_blank" rel="noopener"><strong>this calculator</strong></a> to convert ng/uL to nM.</li>
+      <li>If quantifying using <u>KAPA</u>, use <a href="https://drive.google.com/file/d/1bX4JJCQyE4XCVM3NOfM-cYvLXOsWP7uE/view" target="_blank" rel="noopener"><strong>this calculator</strong></a> to convert cp values to nM.</li>
+    </ul>
+
+    <p><strong><u>Illumina Submission Requirements</u>:</strong></p>
+
+    <table style="border-collapse: collapse; width: 100%; margin: 1em 0;">
+      <thead>
+        <tr>
+          <th colspan="3" style="border: 1px solid #000; padding: 8px; text-align: center; font-weight: bold;">NovaSeq 6000</th>
+          <th style="border: 1px solid #000; padding: 8px; text-align: center; font-weight: bold;">NextSeq 500</th>
+          <th style="border: 1px solid #000; padding: 8px; text-align: center; font-weight: bold;">MiSeq</th>
+        </tr>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 8px; text-align: center;"></th>
+          <th style="border: 1px solid #ccc; padding: 8px; text-align: center;"><em>Standard</em></th>
+          <th style="border: 1px solid #ccc; padding: 8px; text-align: center;"><em>XP Workflow (per lane)</em></th>
+          <th rowspan="4" style="border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: middle;">4nM at 25uL</th>
+          <th rowspan="4" style="border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: middle;">4nM at 25uL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">SP/S1</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 115uL</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 25uL</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">S2</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 175uL</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 30uL</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">S4</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 330uL</td>
+          <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3nM at 40uL</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong><u>Element Aviti Submission Requirement</u>:</strong> 1nM at 30uL</p>
+
+    <p><strong><u>ONT GridION Submission Requirement</u>:</strong> 12uL (*Consult ONT protocol for final loading concentration)</p>
+
+    <p><strong>Note:</strong> If the pool concentration or volume is below the submission requirements listed in the above table, contact GenCore for further instruction and advice.</p>
+
+    <ul>
+      <li>To avoid changes in concentration associated with freeze-thaw, libraries should not be frozen before dilution, pooling or submission to GenCore.</li>
+      <li>Pools must be submitted in LoBind Tubes and labeled with NYU netID, pool name, and concentration.</li>
+      <li>Physical submission of the pools must be no more than 5 days prior to the start of the sequencing run. Submission should only occur once the confirmation email has been received.</li>
+    </ul>
+
+    <h5><strong>Custom Sequencing Primers:</strong></h5>
+    <ul>
+      <li>If using custom sequencing primers, these must be submitted along with the samples, and denoted on TuboWeb.</li>
+      <li>Aliquots must be at 100uM and at least 20uL in a clearly labeled LoBind Tube.</li>
+    </ul>
+
+  </div>
+
+  <div id="tab-ad" class="tab-content">
+
+    <h5><strong>Submitting Samples for Library Preparation and Sequencing:</strong></h5>
+    <p>Library preparation requires high quality nucleic acid, for DNA sequencing provide a gel picture of your sample showing High Molecular Weight DNA without degradation, for RNA sequencing provide Bioanalyzer trace with RNA Integrity Number (RIN) greater than 8. Concentration must be determined using fluorometric-based method (Quant-IT, Qubit).</p>
+
+    <p><u>Required amount:</u></p>
+    <ul>
+      <li>For DNA sequencing, required DNA quantity can be as low as 1 ng and up to 4 ug depending on library type and protocol</li>
+      <li>For RNA sequencing usual input is 1 ug of total RNA</li>
+      <li>Include a DNase step with the RNA isolation method to ensure purity and accurate quantification of the sample</li>
+    </ul>
+
+    <p>Resuspend your samples in 10 mM Tris-HCl, pH 8.5. If the minimum amount required can be exceeded, we strongly suggest to increase this amount since a Nanodrop versus Qubit ratio of 10 is frequently observed.</p>
+
+    <p>Note: Failing to provide high quality samples in sufficient amount will lead to library preparation failure and/or bad sequencing data. Prior to submitting any sample, please contact the sequencing Core to discuss your project.</p>
+
+    <h5><strong>Submitting Libraries and Pools for sequencing:</strong></h5>
+    <p>Libraries and Pools must be submitted in low retention tubes, resuspended in 10 mM Tris-HCl, pH 8.5 with 0.1% Tween 20, and with their bioanalyzer trace. If submitting a pool of libraries, please follow the TruSeq Library Prep Pooling Guide for different valid pooling strategies based on plexity. At reception pools will be quantified by qPCR for optimum loading on the Flowcell.</p>
+
+    <ul>
+      <li>Custom Sequencing Primers: If using custom sequencing primers, these must be submitted along with samples. Aliquots must be at 100 uM in at least 20 ul. Primers must be diluted in EB or DI Water. Must be in a Low-bind tube and clearly labeled.</li>
+    </ul>
+
+  </div>
+</div>
