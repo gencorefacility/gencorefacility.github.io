@@ -1,15 +1,22 @@
-{% assign header_img = page.header_image | default: '/assets/images/hero-bg.jpg' %}
+{% if page.layout == 'post' and page.featured_image %}
+  {% assign header_img = page.featured_image %}
+{% else %}
+  {% assign header_img = page.header_image | default: '/assets/images/hero-bg.jpg' %}
+{% endif %}
 <div class="page-header {% if page.layout == 'home' %}hero{% endif %}" style="background-image: url('{{ header_img | relative_url }}')">
   <div class="page-header-content">
     <h1>{{ page.header_title | default: page.title }}</h1>
     {% if page.subtitle %}
     <p class="page-subtitle">{{ page.subtitle }}</p>
     {% endif %}
+    {% if page.layout == 'post' %}
+    <p class="page-subtitle">Published by <strong>{{ page.author }}</strong> on {{ page.date | date: "%Y-%m-%d" }}</p>
+    {% endif %}
   </div>
   {% if page.layout == 'home' %}
   <div class="hero-curve">
     <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
-      <path d="M0,0 C400,100 600,100 1000,0 L1000,100 L0,100 Z"></path>
+      <path d="M0,0 L500,100 L1000,0 L1000,100 L0,100 Z"></path>
     </svg>
   </div>
   {% endif %}

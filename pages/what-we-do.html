@@ -1,0 +1,103 @@
+---
+layout: page
+title: NYU Genomics Core Bioinformatics
+permalink: /bioinformatics/what-we-do/
+header_image: /assets/images/header-bioinformatics.jpg
+---
+
+<h2 class="section-heading">Overview</h2>
+
+<p>The NYU Center for Genomics and Systems Biology (CGSB) Genomics Core (Gencore) bioinformatics team delivers high-throughput sequencing data with speed, automation, and reliability. Researchers get end-to-end automation, expert support for nonstandard library designs, and consistently fast turnaround across platforms. Built for scale and low friction, our computational platform accelerates discovery and sets a high bar for flexibility, engineering, and service.</p>
+
+<p>Beyond data processing, we advance the research and education mission of NYU through hands-on training, purpose-built tools, tailored bioinformatics support, and active course/student engagement, ensuring investigators at every stage can fully leverage our advanced computational resources.</p>
+
+<h2 class="section-heading">The Team</h2>
+
+<div class="bio-team-grid">
+  <div class="bio-team-member">
+    <img src="/assets/images/bioinformatics/dg-bio.png" alt="David Gresham">
+    <h4>David Gresham</h4>
+    <p>Faculty Director of Bioinformatics</p>
+  </div>
+  <div class="bio-team-member">
+    <img src="/assets/images/bioinformatics/mk-bio.png" alt="Mohammed Khalfan">
+    <h4>Mohammed Khalfan</h4>
+    <p>Senior Bioinformatics Specialist</p>
+  </div>
+  <div class="bio-team-member">
+    <img src="/assets/images/bioinformatics/eb-bio.png" alt="Eric Borenstein">
+    <h4>Eric Borenstein</h4>
+    <p>Biology Department HPC Specialist</p>
+  </div>
+</div>
+
+<h2 class="section-heading">Sequencing Platforms We Support</h2>
+
+<p>Gencore supports multiple technologies to meet the diverse needs of the NYU research community.</p>
+
+<p><strong>Illumina:</strong> MiSeq, NextSeq, NovaSeq<br>
+<strong>Oxford Nanopore (ONT):</strong> MinION and GridION<br>
+<strong>Element Biosciences:</strong> AVITI</p>
+
+<p>To simplify and streamline workflow, researchers use a single computational system to submit metadata for sequencing, track progress, and access results across all sequencing platforms.</p>
+
+<h2 class="section-heading">How We Manage, Process, and Deliver Your Data</h2>
+
+<p>Our fully automated custom analysis pipeline handles every step of sequencing data processing: from basecalling and demultiplexing to quality control and archiving. Built with open-source tools and engineered to scale efficiently across NYU&rsquo;s HPC cluster, it is designed for speed, flexibility, and resilience.</p>
+
+<p>We support advanced and custom sequencing library designs, automatically detect and correct common technical issues, and integrate with our Laboratory Information Management System (LIMS), TuboWeb, which tracks all sample metadata and processing parameters. Because all metadata and processing inputs are recorded at the point of sample submission, the system ensures every result is traceable and reproducible.</p>
+
+<p>Upon completion, researchers receive interactive Quality Control (QC) reports alongside clean, structured data&mdash;delivered via the NYU HPC cluster (accessible via terminal or web portal) or direct transfer to external collaborators. We also support processing runs sequenced at other centers, offering the same streamlined delivery and reliability. All datasets are permanently, and redundantly, archived and can be restored on demand, so labs never have to worry about managing or losing sequencing data.</p>
+
+<h2 class="section-heading">Integration with NYU HPC</h2>
+
+<p>Our computational bioinformatics infrastructure is fully integrated with the NYU HPC cluster. This collaboration is pivotal to the success of our sequencing data workflows and overall research capability.</p>
+
+<p>We install and maintain required bioinformatics software, manage storage, and enforce secure, permissioned access.</p>
+
+<p>With Open OnDemand, researchers use a web interface to manage and download data, launch GPU-accelerated Jupyter Notebooks, RStudio, and IGV, and run command-line tasks&mdash;all within a user-friendly graphical environment.</p>
+
+<p>Hardware upgrades occur behind the scenes; software and pipelines remain available throughout, so transitions to new infrastructure are seamless and research continues without disruption.</p>
+
+<div class="text-center" style="margin: 2em 0;">
+  <img src="/assets/images/bioinformatics/workflow-fig1.png" alt="Genomics Core End-to-End Data Pipeline" style="max-width: 600px;">
+  <p style="font-style: italic; color: #666; margin-top: 0.5em;"><strong>Figure 1:</strong> Genomics Core End-to-End Data Pipeline</p>
+</div>
+
+<h2 class="section-heading">Tools, Resources, and Infrastructure</h2>
+
+<p>We regularly assist researchers with selecting the right tools, optimizing their workflows, and resolving technical challenges across the entire analysis lifecycle. Whether navigating complex pipeline frameworks, troubleshooting errors and resolving failures, addressing large-scale data handling challenges, or managing compute resources, we provide hands-on guidance that empowers researchers to move forward with confidence.</p>
+
+<p>We support a rich ecosystem of tools, pipelines, and resources that empower researchers to analyze, visualize, and share their data. All Gencore developed software and pipelines are maintained at: <a href="https://github.com/gencorefacility">https://github.com/gencorefacility</a></p>
+
+<ul>
+  <li><strong><a href="https://jbrowse.bio.nyu.edu/">JBrowse</a>:</strong> Web-based genome browser. Upload custom datasets, share views publicly, and link directly to published results.</li>
+  <li><strong><a href="http://nasqar.abudhabi.nyu.edu/">NASQAR</a>:</strong> Web-based genomics suite for RNA-seq, metagenomics, epigenetics, variant calling, and more&mdash;modular, easy, and built for single-cell and bulk data.</li>
+  <li><strong><a href="https://reform.bio.nyu.edu/">reform and reform WebApp</a>:</strong> A fast, robust, and flexible Python tool for editing reference genome sequence and annotation files.</li>
+  <li><strong><a href="/variant-calling-pipeline-gatk4/">GATK4 Variant Calling Pipeline</a>:</strong> A fast, scalable, and portable pipeline optimized for the NYU HPC, includes built-in QC, and outputs directly to JBrowse for interactive review.</li>
+  <li><strong><a href="http://shiny.bio.nyu.edu/">RShiny Server</a>:</strong> Hosts custom-built, interactive applications tied to user datasets&mdash;ideal for sharing and publishing.</li>
+  <li><strong><a href="/explore-shared-genome-resource/">Shared Genome Resource</a>:</strong> A curated collection of commonly used genome references and indexes, maintained on NYU HPC.</li>
+  <li><strong><a href="https://learn.gencore.bio.nyu.edu/">Next-Generation Sequencing Educational Portal</a>:</strong> Our genomics educational portal features guides, tutorials, and walkthroughs for common tools and analysis workflows, attracting 10,000+ monthly visitors at NYU and globally.</li>
+  <li><strong><a href="/gpu-accelerated-minion-basecalling/">MinION Basecalling on GPU</a>:</strong> GPU-accelerated basecalling for Oxford Nanopore on NYU HPC, enabling high-throughput processing for labs running ONT locally.</li>
+  <li><strong>Custom Bioinformatics Solutions:</strong> We work with researchers to develop tailored bioinformatics solutions.</li>
+  <li><strong>Nextflow + nf-core Support:</strong> Reproducible, open-source, community-driven pipelines optimized for the NYU HPC.</li>
+  <li><strong>Bioinformatics and Data Analysis Seminars (BADAS):</strong> Gencore&rsquo;s flagship seminar series offers researchers at all levels exposure to new bioinformatics tools, techniques, and best practices.</li>
+</ul>
+
+<!-- Recent Articles Section -->
+<h2 class="section-heading">Recent Articles</h2>
+
+{% for post in site.posts limit:3 %}
+<div class="post-preview">
+  {% if post.featured_image %}
+  <div class="post-thumb" style="background-image: url('{{ post.featured_image }}')"></div>
+  {% endif %}
+  <div class="post-preview-body">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+    <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+    {% if post.excerpt %}
+    <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}

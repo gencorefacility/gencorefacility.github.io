@@ -33,6 +33,8 @@
 - title: Bioinformatics
   url: /bioinformatics/
   children:
+    - title: Overview
+      url: /bioinformatics/
     - title: Getting Started
       url: /bioinformatics/getting-started/
 

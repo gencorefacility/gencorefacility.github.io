@@ -37,13 +37,12 @@
 }
 
 .team-card {
-  width: 180px;
+  width: 200px;
   text-align: center;
 
   img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
+    width: 200px;
+    height: 280px;
     object-fit: cover;
     filter: grayscale(100%);
     transition: filter 0.3s;
@@ -56,7 +55,8 @@
   h4 {
     margin: 0.5em 0 0.1em;
     font-size: 0.95rem;
-    color: $purple;
+    color: $text-color;
+    font-weight: 700;
   }
 
   .team-title {
@@ -94,13 +94,51 @@
     text-decoration: none;
   }
 
+  .resource-icon {
+    font-size: 2.5rem;
+    color: $purple;
+    margin-bottom: 0.2em;
+  }
+
   h4 {
-    margin: 0.5em 0 0.3em;
+    margin: 0.3em 0 0.3em;
     color: $purple;
   }
 
   p {
     font-size: 0.85rem;
+    color: $text-muted;
+    margin: 0;
+  }
+}
+
+// Bioinformatics team grid (What We Do page)
+.bio-team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  flex-wrap: wrap;
+  margin: 1.5em 0;
+}
+
+.bio-team-member {
+  text-align: center;
+  width: 180px;
+
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+
+  h4 {
+    margin: 0.5em 0 0.1em;
+    font-size: 0.95rem;
+    color: $text-color;
+  }
+
+  p {
+    font-size: 0.8rem;
     color: $text-muted;
     margin: 0;
   }
@@ -228,7 +266,7 @@
 .top-cards-dark {
   background: $topbar-bg;
   border-radius: $border-radius;
-  padding: 1em;
+  padding: 1.5em;
   margin-bottom: 1.5em;
 }
 
@@ -253,8 +291,14 @@
     text-decoration: none;
   }
 
+  .top-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.3em;
+  }
+
   h3 {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
   }
 
   p {
@@ -262,6 +306,7 @@
   }
 
   .top-cards-dark & {
+    .top-card-icon { color: $purple; }
     h3 { color: $text-light; }
     p { color: rgba(255, 255, 255, 0.7); }
   }
