@@ -118,7 +118,8 @@ Create partials from the audit's design tokens:
 - `_sass/_variables.scss` — colors, fonts, spacing, shadows from the audit
 - `_sass/_base.scss` — reset, typography, links, tables, code blocks
 - `_sass/_nav.scss` — sticky header, dropdown menus, mobile toggle
-- `_sass/_page-header.scss` — hero/page header with background image + gradient overlay
+- `_sass/_page-header.scss` — hero/page header with background image + overlay
+- `_sass/_homepage.scss` — homepage-specific sections (icon cards, blog preview, location, banners)
 - `_sass/_content.scss` — content cards, grids, tabs, carousels, team cards, equipment items
 - `_sass/_blog.scss` — blog listing, post preview cards, single post styles
 - `_sass/_comments.scss` — comment thread styling
@@ -136,15 +137,21 @@ Entry point `assets/css/style.scss` (must have empty front matter for Jekyll to 
 
 **Key design decisions:**
 - Use the exact colors, fonts, and gradients from the audit's design tokens
-- Keep the WordPress site's visual structure (sticky nav, page header with gradient overlay, content cards with shadow)
+- Keep the WordPress site's visual structure (sticky nav, page header, content cards with shadow)
 - Page backgrounds should match the original (usually light gray, not white)
 - Content areas should be white cards with subtle shadows, floating above the background
+
+**CRITICAL: Extract overlay/background values from the site's actual CSS — never guess.**
+Many WordPress themes use dark overlays (`rgba(0,0,0,0.3)`) over hero/banner images, not colored gradients. If you invent a pink/purple gradient when the site actually uses a subtle dark overlay, every page header will look wrong. Fetch the site's per-page CSS files (look for `<link>` tags with CSS URLs containing `post-` or `page-` IDs) and extract the exact `background-color`, `opacity`, and `background-image` values for each section.
+
+**CRITICAL: Include any icon libraries the original site uses.**
+WordPress sites commonly use Font Awesome, Material Icons, or similar icon libraries. Check the original page source for icon `<link>` tags (e.g., Font Awesome CDN) and include the same library in your `default.html` `<head>`. Don't substitute emoji Unicode characters for proper icons — they look completely different.
 
 ### Step 5: Create layouts
 
 Four layouts cover most WordPress sites:
 
-**`_layouts/default.html`** — HTML shell with head, nav, main, footer, scripts.
+**`_layouts/default.html`** — HTML shell with head, nav, main, footer, scripts. Include any icon libraries (Font Awesome, etc.) and Google Fonts the original site uses in the `<head>`.
 
 **`_layouts/home.html`** — extends default, includes page-header, renders content directly (no card wrapper — homepage has custom sections).
 
@@ -375,8 +382,12 @@ No GitHub Actions configuration needed. GitHub Pages detects the Jekyll project 
 1. **`collections_dir` breaks post discovery** — Do NOT set `collections_dir: .` (or any value) in `_config.yml`. With the github-pages gem, this silently prevents Jekyll from finding `_posts/`. You'll get zero posts with no error message — blog sections render empty, homepage blog previews show nothing. Just omit the key entirely.
 2. **`{{ content }}` in page-header include causes duplication** — If `_includes/page-header.html` contains `{{ content }}`, every page's body renders twice: once inside the header overlay (mangled, overlapping the hero image) and once in the normal position. The include should only render title and subtitle — never `{{ content }}`.
 3. **Permalink mismatches break navigation** — Extract every URL from the original site's nav links. Set each Jekyll page's `permalink:` to match exactly. Don't guess — fetch the page and read the hrefs. If the WP blog is at `/posts/`, use `permalink: /posts/`, not `/blog/`.
-4. **GitHub Pages gem version conflicts** — `github-pages` pins specific gem versions. Don't add gems that conflict.
-5. **Sass deprecation warnings** — GitHub Pages uses an older Sass version. Avoid newer Sass features (`@use`, `@forward`). Stick with `@import`.
-6. **Large files** — GitHub has a 100MB file limit. Compress images before committing.
-7. **Missing images** — After porting, grep for any remaining `wp-content/uploads` references and replace them.
-8. **Comment slugs** — The comment YAML filename must match the post's `page.slug` (derived from the filename by default). If you set a custom `slug` in front matter, use `comment_slug` to override.
+4. **Wrong overlay colors on page headers** — Don't guess overlay colors. Most WordPress sites use a dark semi-transparent overlay on hero/banner images, not a colored gradient. Extract the exact overlay `background-color` and `opacity` values from the site's per-page CSS files. A pink gradient on a site that uses a dark overlay makes every page look completely wrong.
+5. **Missing full-width background sections** — WordPress pages often have full-width sections with background images, overlays, and shape dividers between them. If you don't fetch the per-page CSS to discover these background images, you'll miss entire sections. Check the CSS for every `background-image: url(...)` on each page you're porting.
+6. **Wrong images on blog posts** — If the site uses featured images or inline images in posts, verify each post's images individually against the original. Don't reuse the same image across posts or guess which image belongs to which post.
+7. **Missing icon libraries** — WordPress sites commonly use Font Awesome or similar icon libraries. If you substitute emoji characters for proper icons, the visual match will be way off. Check the original `<head>` for icon library `<link>` tags and include them.
+8. **GitHub Pages gem version conflicts** — `github-pages` pins specific gem versions. Don't add gems that conflict.
+9. **Sass deprecation warnings** — GitHub Pages uses an older Sass version. Avoid newer Sass features (`@use`, `@forward`). Stick with `@import`.
+10. **Large files** — GitHub has a 100MB file limit. Compress images before committing.
+11. **Missing images** — After porting, grep for any remaining `wp-content/uploads` references and replace them.
+12. **Comment slugs** — The comment YAML filename must match the post's `page.slug` (derived from the filename by default). If you set a custom `slug` in front matter, use `comment_slug` to override.

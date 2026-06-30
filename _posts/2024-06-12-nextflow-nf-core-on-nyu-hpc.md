@@ -3,7 +3,7 @@ layout: post
 title: "Nextflow & nf-core on NYU HPC"
 date: 2024-06-12
 author: "Eric Borenstein"
-featured_image: /assets/images/blog/nf-core-rnaseq-featured-image-2.png
+featured_image: /assets/images/blog/m0b37vel.png
 header_image: /assets/images/header-blog.jpg
 comments: true
 ---

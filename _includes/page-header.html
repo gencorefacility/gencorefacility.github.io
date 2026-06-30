@@ -6,4 +6,11 @@
     <p class="page-subtitle">{{ page.subtitle }}</p>
     {% endif %}
   </div>
+  {% if page.layout == 'home' %}
+  <div class="hero-curve">
+    <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
+      <path d="M0,0 C400,100 600,100 1000,0 L1000,100 L0,100 Z"></path>
+    </svg>
+  </div>
+  {% endif %}
 </div>

@@ -103,6 +103,37 @@ done
 
 **Gotcha: Use headless Chrome screenshots to see actual colors/fonts — don't search for theme defaults.** WordPress sites customize colors via the Theme Customizer, overriding theme defaults. The actual values live in inline `<style>` blocks, not the theme's CSS file.
 
+**CRITICAL: Extract per-page CSS for every key page.** WordPress page builders (Elementor, WPBakery, Divi, etc.) generate per-page CSS files that contain the REAL design values — background images, overlay colors, section padding, shape dividers, font sizes/families, icon sizes, and hover effects. The theme CSS only has defaults. You must find these per-page CSS files and extract the actual values.
+
+```bash
+# Find per-page CSS URLs (look for page/post ID-based CSS files)
+curl -sL "$SITE_URL" | grep -oP "href='[^']*post-[0-9]+\.css[^']*'"
+
+# Fetch each one and extract:
+# - Background images: url("...")
+# - Overlay colors: background-color:rgba(...)
+# - Section padding: padding:...
+# - Shape divider dimensions (SVG width/height)
+# - Font families, sizes, weights, colors
+curl -sL "<per-page-css-url>" > page-styles.css
+
+# Extract background images
+grep -oP 'url\("[^"]*"\)' page-styles.css
+
+# Extract overlay colors and opacities
+grep -oP 'background-color:rgba\([^)]+\)' page-styles.css
+grep -oP 'opacity:[0-9.]+' page-styles.css
+
+# Extract section padding values
+grep -oP 'padding:[^;]+' page-styles.css
+
+# Extract font specs
+grep -oP 'font-family:"[^"]*"' page-styles.css | sort -u
+grep -oP 'font-size:[0-9]+px' page-styles.css | sort -u
+```
+
+**Gotcha: Don't invent overlay colors.** Many themes apply dark semi-transparent overlays over hero/banner images, NOT colored gradients. If you guess a pink/purple gradient when the site uses a dark overlay, every page header will look wrong. Always extract the exact overlay `background-color` and `opacity` from the site's actual CSS.
+
 ```bash
 # Google Fonts
 curl -sL "$SITE_URL" | grep -oP 'fonts\.googleapis\.com[^"'"'"']*'
@@ -117,11 +148,11 @@ curl -sL "$SITE_URL" | grep -oP '#[0-9a-fA-F]{3,8}' | sort -u
 curl -sL "$SITE_URL" | grep -oP 'linear-gradient[^;)]+[);]'
 
 # Take screenshots to visually confirm colors and layout
-google-chrome --headless --disable-gpu --screenshot=homepage.png --window-size=1400,3000 "$SITE_URL"
-google-chrome --headless --disable-gpu --screenshot=blogpost.png --window-size=1400,3000 "$SITE_URL/<any-post-slug>/"
+google-chrome --headless --disable-gpu --no-sandbox --screenshot=homepage.png --window-size=1400,5000 "$SITE_URL"
+google-chrome --headless --disable-gpu --no-sandbox --screenshot=blogpost.png --window-size=1400,5000 "$SITE_URL/<any-post-slug>/"
 ```
 
-For theme-specific custom properties (e.g., Hestia uses `--hestia-primary-color`), search for the theme name:
+For theme-specific custom properties, search for the theme name found in Step 1:
 ```bash
 curl -sL "$SITE_URL" | grep -oP '--[a-z]+-primary[^}]*'
 ```
@@ -202,11 +233,13 @@ Compile all findings into a structured summary:
 2. **Nav menu structure** — with dropdowns and **exact href URLs** extracted from the HTML (these become the Jekyll permalinks)
 3. **Blog posts** — date, author, slug, featured image, comment count
 4. **Comments** — total count, distribution by post
-5. **Design tokens** — fonts, colors, gradients, spacing
+5. **Design tokens** — fonts, colors, gradients, spacing, overlay colors/opacities (from Elementor per-page CSS, NOT guessed)
 6. **Image inventory** — organized by category (logos, team, blog, headers, etc.)
-7. **Interactive elements** — what needs special handling or must be skipped
-8. **Forms** — which can be replaced with Google Forms links, which to skip
-9. **External dependencies** — Google Maps, third-party scripts, etc.
+7. **Full-width sections** — for each page (especially the homepage), document every full-width background section: what background image it uses, what overlay color/opacity, what shape dividers separate it from adjacent sections, and what content sits on top of it
+8. **Icon libraries** — which icon library the site loads (Font Awesome, Material Icons, etc.) and the CDN URL
+9. **Interactive elements** — what needs special handling or must be skipped
+10. **Forms** — which can be replaced with Google Forms links, which to skip
+11. **External dependencies** — Google Maps, third-party scripts, etc.
 
 ## Output
 

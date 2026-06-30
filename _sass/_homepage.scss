@@ -1,0 +1,306 @@
+// Icon button cards (4 cards overlapping hero)
+.icon-cards-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: -170px auto 40px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+    margin-top: -100px;
+    gap: 15px;
+  }
+}
+
+.icon-card {
+  flex: 1;
+  background: #fff;
+  padding: 50px 35px;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.36);
+    text-decoration: none;
+  }
+
+  .icon-card-icon {
+    font-size: 56px;
+    margin-bottom: 25px;
+  }
+
+  h3 {
+    font-family: $font-alt;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.2em;
+    margin: 0 0 25px;
+  }
+
+  p {
+    font-family: $font-alt;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #000;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    flex: 0 0 calc(50% - 15px);
+    padding: 30px 20px;
+  }
+
+  @media (max-width: 500px) {
+    flex: 0 0 100%;
+  }
+}
+
+// Homepage section container
+.home-section {
+  max-width: 1249px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.home-section-title {
+  font-family: $font-alt;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 2.8em;
+  color: #424242;
+  text-align: center;
+  margin: 0;
+}
+
+// Blog cards on homepage
+.home-blog-grid {
+  display: flex;
+  gap: 30px;
+  margin-top: -25px;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
+.home-blog-card {
+  flex: 1;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+  }
+
+  .blog-card-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .blog-card-body {
+    padding: 0.8em 0;
+
+    h4 {
+      font-family: $font-alt;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 0.3em;
+      line-height: 1.3;
+    }
+
+    .post-meta {
+      font-size: 0.85rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+}
+
+.btn-purple {
+  background: $purple;
+
+  &:hover {
+    background: darken($purple, 10%);
+  }
+
+  i {
+    margin-right: 8px;
+  }
+}
+
+// Location banner (full-width dark bg with lab image)
+.location-banner {
+  position: relative;
+  background-size: cover;
+  background-position: 53% 44%;
+  background-color: #2a2a2a;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.location-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.58);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.location-banner-shape-top {
+  position: relative;
+  z-index: 2;
+
+  svg {
+    display: block;
+    width: 149%;
+    height: 33px;
+  }
+}
+
+.location-banner-shape-bottom {
+  position: relative;
+  z-index: 2;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 45px;
+  }
+}
+
+.location-banner-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1062px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  h2 {
+    font-family: $font-alt;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 2.8em;
+    margin: 0;
+  }
+
+  h3 {
+    font-family: $font-alt;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+  }
+
+  p {
+    font-family: $font-alt;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+  }
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.location-col {
+  iframe {
+    width: 100%;
+    height: 340px;
+    border: 0;
+    border-radius: 3px;
+    margin-top: 0.5em;
+  }
+}
+
+.location-banner-content .location-grid {
+  padding-bottom: 40px;
+}
+
+// Partner logos
+.partner-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 1em 0;
+  max-width: 994px;
+
+  a {
+    text-align: center;
+  }
+
+  img {
+    height: 100px;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Bottom cityscape banner
+.bottom-banner {
+  position: relative;
+  background-size: cover;
+  background-position: bottom center;
+  margin-top: -14px;
+  margin-bottom: -5px;
+}
+
+.bottom-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.16);
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.bottom-banner-shape-top {
+  position: relative;
+  z-index: 2;
+
+  svg {
+    display: block;
+    width: 200%;
+    height: 150px;
+  }
+}
+
+.bottom-banner-spacer {
+  height: 200px;
+  position: relative;
+  z-index: 2;
+}
