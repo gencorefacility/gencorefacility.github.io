@@ -45,6 +45,8 @@ curl -sL "$SITE_URL" | grep -oP '<li[^>]*menu-item[^>]*>.*?</a>' | head -30
 
 **Gotcha: The nav menu structure is in the page HTML, not the API.** The default WordPress REST API doesn't expose menus (requires a plugin). Extract the full nav including dropdowns from the HTML.
 
+**CRITICAL: Extract exact URLs from navigation hrefs.** Use WebFetch or curl to read the homepage and extract every nav link's exact href. These URLs are what the Jekyll permalinks must match — never guess a URL like `/blog/` when the actual link is `/posts/`. Record the full URL map in the audit manifest so the port skill can set permalinks correctly.
+
 ### Step 3: Inventory all blog posts
 
 ```bash
@@ -197,7 +199,7 @@ done
 
 Compile all findings into a structured summary:
 1. **Sitemap** — all pages with hierarchy, URLs, and WP IDs
-2. **Nav menu structure** — with dropdowns
+2. **Nav menu structure** — with dropdowns and **exact href URLs** extracted from the HTML (these become the Jekyll permalinks)
 3. **Blog posts** — date, author, slug, featured image, comment count
 4. **Comments** — total count, distribution by post
 5. **Design tokens** — fonts, colors, gradients, spacing

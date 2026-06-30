@@ -4,5 +4,6 @@ _site/
 .jekyll-metadata
 Gemfile.lock
 vendor/
+reference-screenshots/
 .bundle/
 audit-screenshots/

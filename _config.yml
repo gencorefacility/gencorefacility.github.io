@@ -5,7 +5,6 @@ baseurl: ""
 
 permalink: /:categories/:title/
 
-collections_dir: .
 markdown: kramdown
 highlighter: rouge
 

@@ -2,6 +2,23 @@
 
 Port a WordPress site to Jekyll on GitHub Pages, preserving all content, comments, images, and visual design.
 
+## Critical: Work one page at a time
+
+Do NOT attempt a bulk port of all pages at once. Port one page at a time using this loop:
+
+1. Screenshot the original WordPress page (headless Chrome)
+2. Build/fix the Jekyll version of that page
+3. Rebuild the site and screenshot the new version
+4. Compare the two screenshots side-by-side
+5. Fix discrepancies and repeat steps 3-4 until the page matches
+6. Move to the next page
+
+Keep the original screenshot on hand throughout — always compare against the real site, not your memory of it.
+
+## Critical: Preserve all original URLs
+
+Every page permalink must match the original WordPress URL path exactly. Extract URLs from the site's navigation links (never guess URLs). If the WordPress blog listing is at `/posts/`, the Jekyll page must use `permalink: /posts/`. If ordering is at `/home-page/ordering/`, match that too (or decide explicitly to change it — don't accidentally drift).
+
 ## Prerequisites
 
 - A completed WordPress audit (use the `wp-audit` skill first)
@@ -41,6 +58,8 @@ EOF
 ```
 
 ### Step 2: Create `_config.yml`
+
+**IMPORTANT: Do NOT include `collections_dir` in the config.** Setting `collections_dir: .` (or any value) breaks post discovery with the github-pages gem — Jekyll will silently find zero posts and render empty blog sections with no error message. Just omit the key entirely; the default behavior is correct.
 
 ```yaml
 title: "Site Title"
@@ -139,7 +158,7 @@ Four layouts cover most WordPress sites:
 
 **`_includes/footer.html`** — footer links, credit line.
 
-**`_includes/page-header.html`** — background image + gradient overlay, page title, optional subtitle. Reads `page.header_image` for the background.
+**`_includes/page-header.html`** — background image + gradient overlay, page title, optional subtitle. Reads `page.header_image` for the background. **CRITICAL: Do NOT put `{{ content }}` in this include.** The include renders inside the layout, which already renders `{{ content }}`. If the include also renders `{{ content }}`, every page's body will appear twice — once inside the header overlay (broken) and once in the main body. The page-header include should ONLY render `page.title`, `page.subtitle`, and the background image.
 
 **`_includes/comments.html`** — renders comments from `site.data.comments[page.slug]`. Handles nested replies.
 
@@ -271,12 +290,14 @@ Create `_data/comments/<post-slug>.yml` for each post that has comments:
 
 ### Step 12: Create the blog listing page
 
-Create `blog.html` in the root:
+**First, find the original blog listing URL.** Fetch the homepage HTML and extract the Blog nav link href — do NOT guess `/blog/` or `/posts/`. Use whatever URL the original site uses.
+
+Create `blog.html` in the root with `permalink` matching the original URL:
 ```html
 ---
 layout: default
 title: Blog
-permalink: /blog/
+permalink: /posts/   # <-- MUST match the original WP blog listing URL
 header_image: /assets/images/header-blog.jpg
 ---
 {% include page-header.html %}
@@ -296,19 +317,47 @@ header_image: /assets/images/header-blog.jpg
 </div>
 ```
 
-### Step 13: Test locally
+### Step 13: Test locally — page-by-page screenshot comparison
+
+This is the most important step. Do not skip or rush it. Build the site, serve it, and compare every page against the original using headless Chrome screenshots.
 
 ```bash
-bundle install
-bundle exec jekyll serve
-# Visit http://localhost:4000 and verify:
-# - Homepage loads with hero, nav, blog previews, location maps
-# - All nav links work (including dropdown sub-pages)
-# - Blog listing shows all posts with featured images
-# - Individual posts render correctly with code blocks, images, comments
-# - Mobile nav toggle works
-# - Page headers show correct background images with gradient overlay
+# Build and serve (use Docker if Ruby/Jekyll not installed locally)
+docker run --rm -d --network=host -v "$PWD:/srv/jekyll" \
+  --name jekyll-serve jekyll/jekyll:4 \
+  bash -c "bundle install --quiet && bundle exec jekyll serve --host 0.0.0.0 --port 4000"
 ```
+
+**Verification loop for EACH page:**
+
+1. Screenshot the original WordPress page:
+   ```bash
+   google-chrome --headless --disable-gpu --no-sandbox \
+     --screenshot="reference-screenshots/original-<page>.png" \
+     --window-size=1400,3000 "https://original-site.com/<page>/"
+   ```
+
+2. Screenshot the Jekyll version:
+   ```bash
+   google-chrome --headless --disable-gpu --no-sandbox \
+     --screenshot="reference-screenshots/current-<page>.png" \
+     --window-size=1400,3000 "http://localhost:4000/<page>/"
+   ```
+
+3. View both screenshots and compare. Check for:
+   - **Content duplication** — anything appearing twice means a layout/include bug
+   - **Missing content** — empty sections (especially blog post lists) mean posts aren't being found
+   - **Wrong content** — content from another page appearing means layout contamination
+   - **Missing images** — broken image paths
+   - **Layout differences** — wrong spacing, missing sections, wrong order
+
+4. Fix issues, rebuild, re-screenshot, and compare again. Repeat until the page matches.
+
+**Common traps that cause silent failures:**
+- `collections_dir` in `_config.yml` → zero posts found, no error
+- `{{ content }}` in `page-header.html` include → content renders twice on every page
+- Blog listing permalink doesn't match nav link → 404 on blog page
+- Missing `featured_image` in post front matter → empty blog cards on homepage
 
 ### Step 14: Deploy
 
@@ -323,9 +372,11 @@ No GitHub Actions configuration needed. GitHub Pages detects the Jekyll project 
 
 ## Common issues
 
-1. **GitHub Pages gem version conflicts** — `github-pages` pins specific gem versions. Don't add gems that conflict.
-2. **Sass deprecation warnings** — GitHub Pages uses an older Sass version. Avoid newer Sass features (`@use`, `@forward`). Stick with `@import`.
-3. **Large files** — GitHub has a 100MB file limit. Compress images before committing.
-4. **Permalink mismatches** — WordPress URLs must match Jekyll permalinks exactly for SEO. Set `permalink:` in front matter to match the original URL path.
-5. **Missing images** — After porting, grep for any remaining `wp-content/uploads` references and replace them.
-6. **Comment slugs** — The comment YAML filename must match the post's `page.slug` (derived from the filename by default). If you set a custom `slug` in front matter, use `comment_slug` to override.
+1. **`collections_dir` breaks post discovery** — Do NOT set `collections_dir: .` (or any value) in `_config.yml`. With the github-pages gem, this silently prevents Jekyll from finding `_posts/`. You'll get zero posts with no error message — blog sections render empty, homepage blog previews show nothing. Just omit the key entirely.
+2. **`{{ content }}` in page-header include causes duplication** — If `_includes/page-header.html` contains `{{ content }}`, every page's body renders twice: once inside the header overlay (mangled, overlapping the hero image) and once in the normal position. The include should only render title and subtitle — never `{{ content }}`.
+3. **Permalink mismatches break navigation** — Extract every URL from the original site's nav links. Set each Jekyll page's `permalink:` to match exactly. Don't guess — fetch the page and read the hrefs. If the WP blog is at `/posts/`, use `permalink: /posts/`, not `/blog/`.
+4. **GitHub Pages gem version conflicts** — `github-pages` pins specific gem versions. Don't add gems that conflict.
+5. **Sass deprecation warnings** — GitHub Pages uses an older Sass version. Avoid newer Sass features (`@use`, `@forward`). Stick with `@import`.
+6. **Large files** — GitHub has a 100MB file limit. Compress images before committing.
+7. **Missing images** — After porting, grep for any remaining `wp-content/uploads` references and replace them.
+8. **Comment slugs** — The comment YAML filename must match the post's `page.slug` (derived from the filename by default). If you set a custom `slug` in front matter, use `comment_slug` to override.
