@@ -3,10 +3,12 @@
   box-shadow: $card-shadow;
   border-radius: $border-radius;
   padding: 2em 2.5em;
-  margin: -30px auto 2em;
+  margin: -30px auto 0;
   position: relative;
   z-index: 3;
-  max-width: $max-width;
+  width: 100%;
+  max-width: 1340px; // inner-page card: 30px grey gutters at 1400 (source = x30..1369); not $max-width (1140)
+  flex: 1 0 auto;    // white card fills to the footer on short pages; grey shows only in the 30px side gutters
 
   h1:first-child, h2:first-child, h3:first-child {
     margin-top: 0;
@@ -14,7 +16,12 @@
 }
 
 .page-content {
-  padding: 0 20px 2em;
+  padding: 0 20px;
+  background: #d6d6d6; // grey shows only in the ~30px side gutters beside the full-height white card
+  flex: 1 0 auto;      // fill viewport height (no-op until <main> is a flex column)
+  display: flex;
+  flex-direction: column;
+  align-items: center; // center the 1340px white card; gutters stay grey
 }
 
 // Team cards

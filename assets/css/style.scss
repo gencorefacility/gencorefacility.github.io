@@ -1,7 +1,8 @@
 ---
 ---
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&family=Nunito+Sans:wght@400;600;700&display=swap');
+// Fonts are self-hosted and loaded via /assets/fonts/fonts.css in the <head>
+// (external @import did not paint reliably in headless capture).
 
 @import "variables";
 @import "base";
@@ -12,3 +13,12 @@
 @import "blog";
 @import "comments";
 @import "footer";
+
+// Per-page lanes (parallel porting) — each owned by exactly one worker
+@import "pages/news";
+@import "pages/invoicing";
+@import "pages/team";
+@import "pages/sequencing";
+@import "pages/platforms";
+@import "pages/libdoc";
+@import "pages/libsub";

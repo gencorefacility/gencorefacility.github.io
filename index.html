@@ -2,7 +2,7 @@
 layout: home
 title: Genomics Core
 header_title: Genomics Core
-subtitle: Providing next-generation sequencing and scientific support to the NYU community
+subtitle: Providing next-generation sequencing and scientific support to the NYU community.
 header_image: /assets/images/hero-bg.jpg
 ---
 
@@ -41,9 +41,9 @@ header_image: /assets/images/hero-bg.jpg
 <!-- Blog Posts -->
 <div class="home-section">
   <h2 class="home-section-title">Blog Posts</h2>
-  <div class="home-blog-grid">
+  <div class="home-feature-grid">
     {% for post in site.posts limit:3 %}
-    <a href="{{ post.url | relative_url }}" class="home-blog-card">
+    <a href="{{ post.url | relative_url }}" class="home-feature-card">
       {% if post.featured_image %}
       <div class="blog-card-image">
         <img src="{{ post.featured_image | relative_url }}" alt="{{ post.title }}">
@@ -55,38 +55,42 @@ header_image: /assets/images/hero-bg.jpg
     </a>
     {% endfor %}
   </div>
-  <div class="text-center" style="margin-top: 1.5em;">
+  <div class="text-center" style="margin-top: 0.9em;">
     <a href="{{ '/posts/' | relative_url }}" class="btn btn-purple"><i class="fas fa-book"></i> Read More</a>
   </div>
 </div>
 
 <!-- Location Section -->
-<div class="home-section">
+<div class="home-section" style="padding-top: 93px; padding-bottom: 4px;">
   <h2 class="home-section-title">Location</h2>
 </div>
 <div class="location-banner" style="background-image: url('{{ '/assets/images/lab-bottom.jpg' | relative_url }}')">
+  <div class="location-shape-top">
+    <svg viewBox="0 0 700 10" preserveAspectRatio="none"><path fill="#ffffff" d="M350,10L336,0h28L350,10z"/></svg>
+  </div>
   <div class="location-banner-overlay"></div>
   <div class="location-banner-content">
     <div class="location-grid">
       <div class="location-col">
-        <h3>New York</h3>
-        <p>NYU Center for Genomics &amp; Systems Biology<br>
-        12 Waverly Place, New York, NY 10003</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2!2d-73.9968!3d40.7295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2599787834ad9%3A0x4b5d69039bba498a!2sCenter%20for%20Genomics%20and%20Systems%20Biology!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" loading="lazy"></iframe>
+        <p>New York University<br>
+        Center for Genomics and Systems Biology<br>
+        12 Waverly Place, 8th Floor<br>
+        New York, NY 10003</p>
+        <a class="location-map" href="https://maps.google.com/maps?q=NYU%20Center%20for%20Genomics%20and%20Systems%20Biology" target="_blank" rel="noopener"><img src="{{ '/assets/images/map-ny.png' | relative_url }}" alt="Map of NYU Center for Genomics and Systems Biology"></a>
       </div>
       <div class="location-col">
-        <h3>Abu Dhabi</h3>
         <p>New York University Abu Dhabi<br>
         Saadiyat Marina District<br>
-        Abu Dhabi, United Arab Emirates</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.8!2d54.4340!3d24.5236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e6636b7291ceb%3A0xf69e6e1a46a3b4cb!2sNew%20York%20University%20Abu%20Dhabi!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" loading="lazy"></iframe>
+        Abu Dhabi<br>
+        Arab Emirates</p>
+        <a class="location-map" href="https://maps.google.com/maps?q=Saadiyat%20Island%20Abu%20Dhabi%2C%20United%20Arab%20Emirates" target="_blank" rel="noopener"><img src="{{ '/assets/images/map-abudhabi.png' | relative_url }}" alt="Map of Saadiyat Island, Abu Dhabi"></a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Partner Logos -->
-<div class="home-section" style="padding-top: 0;">
+<div class="home-section" style="padding-top: 52px; padding-bottom: 73px;">
   <div class="partner-logos">
     <a href="/"><img src="{{ '/assets/images/logos/gencore-logo-new.png' | relative_url }}" alt="Genomics Core"></a>
     <a href="http://as.nyu.edu/content/nyu-as/as/departments/biology/research/gsb.html"><img src="{{ '/assets/images/logos/cgsb_logo-1.png' | relative_url }}" alt="CGSB"></a>

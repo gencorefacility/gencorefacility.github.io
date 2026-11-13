@@ -4,8 +4,13 @@
     <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
     <ul class="nav-menu">
       {% for item in site.data.nav %}
-      <li class="nav-item">
-        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% assign is_active = false %}
+      {% if item.url != '/' %}
+        {% if page.url == item.url or page.url contains item.url %}{% assign is_active = true %}{% endif %}
+        {% if item.children %}{% for child in item.children %}{% if page.url == child.url or page.url contains child.url %}{% assign is_active = true %}{% endif %}{% endfor %}{% endif %}
+      {% endif %}
+      <li class="nav-item{% if is_active %} active{% endif %}">
+        <a href="{{ item.url | relative_url }}">{{ item.title }}{% if item.children %} <span class="nav-caret">&#9662;</span>{% endif %}</a>
         {% if item.children %}
         <ul class="nav-dropdown">
           {% for child in item.children %}
