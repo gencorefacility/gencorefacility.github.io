@@ -1,0 +1,90 @@
+// Row 6 — Platforms & Specifications (/platforms-specifications/). Scope ALL rules under .pg-platforms.
+
+.pg-platforms {
+
+  // Elementor boxed content column: ~768px centered within the white card.
+  .plat-inner {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 50px 0 75px;
+  }
+
+  // Section headings (Elementor heading widgets) — purple, centered, Nunito Sans 48/700.
+  // (vertical margins collapse with adjacent siblings)
+  .plat-h2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1em;
+    letter-spacing: 1.5px;
+    color: #6f42b7;
+    text-align: center;
+    margin: 82px 0 35px;
+  }
+
+  .plat-h2--first {
+    margin: 0 0 44px;
+  }
+
+  // Sub-platform headings (NovaSeq / NextSeq / MiSeq) — dark grey, centered, 30/700.
+  .plat-h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1.2px;
+    color: #424242;
+    text-align: center;
+    margin: 58px 0 42px;
+  }
+
+  // Intro paragraph — Nunito Sans 19/300, left-aligned grey.
+  .plat-text {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #7a7a7a;
+    text-align: left;
+    margin: 0 0 15px;
+  }
+
+  // Bullet list — left-aligned, 19/300. Large bottom margin precedes the Oxford heading.
+  .plat-list {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0 0 126px;
+    padding-left: 40px;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  // "Note:" paragraph under Illumina heading — centered, 19/300, slight side margins.
+  .plat-note {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #7a7a7a;
+    text-align: center;
+    margin: 0 40px;
+  }
+
+  // Spec table images — natural size, centered. ~25px between stacked tables.
+  .plat-img {
+    margin: 0 0 21px;
+    text-align: center;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+// Row 3 — Invoicing & Pricing (/invoicing-pricing/). Scope ALL rules under .pg-invoicing.
+
+.pg-invoicing {
+
+  // Center the tab widget to emulate col-md-8 col-md-offset-2
+  .tab-group {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  // ---- Tab titles ----
+  .tab-nav {
+    display: flex;
+    border: 0;
+    border-bottom: 2px solid #d5d8dc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: 2px solid transparent;
+    border-bottom: 0;
+    outline: none;
+    cursor: pointer;
+    font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2em;
+    letter-spacing: 1.2px;
+    color: #424242;
+    padding: 22px 25px 18px;
+    margin: 0;
+    margin-bottom: -2px;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform: none;
+
+    &::after { display: none; }
+
+    &.active {
+      color: #6f42b7;
+      border: 2px solid #d5d8dc;
+      border-bottom-color: #ffffff;
+      background: #ffffff;
+    }
+  }
+
+  // ---- Tab content box ----
+  .tab-content {
+    display: none;
+    border: 2px solid #d5d8dc;
+    border-top: 0;
+    padding: 2px 20px 38px;
+    background: #ffffff;
+
+    &.active { display: block; }
+
+    p, ul, li, td, th {
+      font-size: 19px;
+      line-height: 1.618;
+      color: #3c4858;
+      font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin: 0 0 15px;
+      padding-left: 40px;
+      list-style: disc;
+
+      li { margin-bottom: 4px; }
+    }
+  }
+
+  // ---- Invoicing table ----
+  .invoice-table {
+    width: auto;
+    max-width: 100%;
+    margin: 0 0 15px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+
+    tbody tr,
+    tbody tr:nth-child(odd),
+    tbody tr:nth-child(even) {
+      background-color: transparent !important;
+    }
+
+    th, td {
+      border: 0;
+      border-top: 1px solid #eeeeee;
+      padding: 12px 8px;
+      vertical-align: middle;
+      background-color: transparent;
+    }
+
+    .table-head {
+      border-top: 0;
+      border-bottom: 1px solid #eeeeee;
+      text-align: center;
+      font-weight: 700;
+      padding-bottom: 11px;
+    }
+
+    .q-cell {
+      width: 50px;
+      font-weight: 700;
+      text-align: left;
+      padding-left: 10px;
+      white-space: nowrap;
+    }
+
+    .period-cell {
+      text-align: center;
+      white-space: nowrap;
+      padding: 12px 4px;
+    }
+  }
+}

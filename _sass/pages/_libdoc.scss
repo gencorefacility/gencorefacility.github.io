@@ -1,0 +1,99 @@
+// Row 7 — TuboWeb Tips & Guide (/sequencing/library-documentation/). Scope ALL rules under .pg-libdoc.
+
+.pg-libdoc {
+
+  // Hestia-style content column, centered inside the white card
+  .libdoc-wrap {
+    max-width: 725px;
+    margin: 0 auto;
+    padding: 34px 0 40px;
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    color: #7a7a7a;
+  }
+
+  // ---- Body text ----
+  p {
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.63em;
+    color: #7a7a7a;
+    margin: 0 0 18px;
+  }
+
+  .ld-center { text-align: center; }
+  .ld-left   { text-align: left; }
+
+  a {
+    color: #e91e63;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  // ---- Lists ----
+  ul {
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.63em;
+    color: #7a7a7a;
+    margin: 0 0 18px;
+    padding-left: 40px;
+    list-style: disc;
+
+    li { margin-bottom: 6px; }
+  }
+
+  strong { font-weight: 700; }
+
+  // ---- Headings ----
+  h2 {
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 37px;
+    font-weight: 400;
+    line-height: 1.15em;
+    color: #7a7a7a;
+    margin: 20px 0 26px;
+  }
+
+  h4 {
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 1.2em;
+    color: #7a7a7a;
+    margin: 18px 0 23px;
+  }
+
+  h6 {
+    font-family: "Nunito Sans", "Helvetica", "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3em;
+    color: #7a7a7a;
+    margin: 18px 0 18px;
+  }
+
+  .ld-indent { padding-left: 60px; }
+
+  // ---- Horizontal rules ----
+  hr {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin: 14px 0;
+    height: 0;
+    background: none;
+  }
+
+  // ---- Embedded screenshot images ----
+  .ld-img {
+    text-align: center;
+    margin: 0 0 20px;
+
+    img {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

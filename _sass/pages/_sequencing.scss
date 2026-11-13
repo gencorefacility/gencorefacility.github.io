@@ -1,0 +1,174 @@
+// Row 5 — Sequencing (/sequencing/). Scope ALL rules under .pg-sequencing.
+
+.pg-sequencing {
+
+  // Hestia-style content column, centered inside the white card
+  .seq-wrap {
+    max-width: 725px;
+    margin: 0 auto;
+    padding: 34px 0 0;
+  }
+
+  // ---- Carousel (2-up) ----
+  .seq-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -7px;
+    padding-bottom: 69px;
+  }
+  .seq-slides {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .seq-slide {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    img {
+      display: block;
+      width: auto;
+      height: 201px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    figcaption {
+      margin-top: 2px;
+      line-height: 1;
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: #000;
+      text-align: center;
+    }
+  }
+  .seq-arrow {
+    flex: 0 0 auto;
+    background: none;
+    border: 0;
+    padding: 0 4px;
+    cursor: pointer;
+    color: #000;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center;
+    svg { width: 24px; height: 24px; display: block; }
+  }
+
+  // ---- Body text blocks ----
+  .seq-text {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1em;
+    color: #000;
+
+    p {
+      margin: 0 0 0.7em;
+      line-height: 1.63em;
+      &:last-child { margin-bottom: 0; }
+    }
+    a {
+      color: #e91e63;
+      text-decoration: none;
+      &:hover { text-decoration: underline; }
+      strong { font-weight: 700; }
+    }
+    strong { font-weight: 700; }
+  }
+  .seq-center { text-align: center; }
+  .seq-left   { text-align: left; }
+
+  // spacing after intro block
+  .seq-carousel + .seq-text { padding-bottom: 73px; }
+
+  // ---- Section headings ----
+  .seq-heading {
+    text-align: center;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    color: #6f42b7;
+    margin: 21px 0 0;
+    padding: 0 0 40px;
+  }
+
+  // ---- Toggle / accordion ----
+  .seq-toggle {
+    margin: 46px 0 0;
+    padding: 0 0 70px 50px;
+  }
+  .seq-toggle-inner {
+    max-width: 567px;
+    margin: 0 auto;
+  }
+  .seq-item {
+    border-bottom: 1px solid #d5d8dc;
+    &:not(:last-child) { margin-bottom: 10px; }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 13px 0 21px 31px;
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1em;
+      letter-spacing: 0.7px;
+      color: #424242;
+      &::-webkit-details-marker { display: none; }
+    }
+    .seq-ico {
+      flex: 0 0 auto;
+      width: 0;
+      height: 0;
+      margin-right: 18px;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 13px solid #424242;
+    }
+    &[open] > summary {
+      color: #6f42b7;
+      .seq-ico { border-left-color: #6f42b7; }
+    }
+
+    .seq-content {
+      font-family: "Nunito Sans", sans-serif;
+      font-size: 19px;
+      font-weight: 300;
+      line-height: 1.4em;
+      color: #7a7a7a;
+      padding: 0 0 21px 98px;
+      p { margin: 0 0 1em; &:last-child { margin-bottom: 0; } }
+      a { color: #e91e63; text-decoration: none; }
+    }
+  }
+
+  // Abu Dhabi heading top gap
+  .seq-toggle + .seq-heading { padding-top: 0; }
+  // Abu Dhabi text block
+  .seq-heading + .seq-left { padding-bottom: 74px; }
+
+  // ---- CSPro logo ----
+  .seq-cspro {
+    text-align: center;
+    padding: 0 0 24px;
+    img {
+      display: inline-block;
+      width: 400px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
